@@ -168,25 +168,33 @@
             z-index: 10;
         }
         
+        /* Updated Dashboard Grid for Row Format */
         .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .dashboard-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
         }
         
         .dashboard-item {
             background-color: white;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: var(--shadow);
             transition: var(--transition);
             cursor: pointer;
             position: relative;
             overflow: hidden;
             border-top: 5px solid var(--primary);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
         }
         
         .dashboard-item::before {
@@ -221,10 +229,10 @@
         
         .dashboard-item h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--dark);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             line-height: 1.3;
         }
         
@@ -233,7 +241,6 @@
             font-size: 14px;
             line-height: 1.5;
             margin-bottom: 15px;
-            flex-grow: 1;
         }
         
         .item-meta {
@@ -390,8 +397,8 @@
         }
         
         @media (max-width: 768px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
+            .dashboard-item {
+                min-width: 100%;
             }
             
             .title-box h1 {
@@ -434,75 +441,84 @@
         </header>
         
         <main class="dashboard-grid">
-            <div class="dashboard-item" onclick="openModal(1)">
-                <div class="item-number">01</div>
-                <h2>METSO Plant Optimization</h2>
-                <div class="item-meta">
-                    <span class="item-arrow">→</span>
+            <!-- Row 1 -->
+            <div class="dashboard-row">
+                <div class="dashboard-item" onclick="openModal(1)">
+                    <div class="item-number">01</div>
+                    <h2>METSO Plant Optimization</h2>
+                    <div class="item-meta">
+                        <span class="item-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-item" onclick="openModal(2)">
+                    <div class="item-number">02</div>
+                    <h2>VSI to Rivo Conversion</h2>
+                    <div class="item-meta">
+                        <span class="item-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-item" onclick="openModal(3)">
+                    <div class="item-number">03</div>
+                    <h2>Mining & Bench Planning</h2>
+                    <div class="item-meta">
+                        <span class="item-arrow">→</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="dashboard-item" onclick="openModal(2)">
-                <div class="item-number">02</div>
-                <h2>VSI to Rivo Conversion</h2>
-                <div class="item-meta">
-                    <span class="item-arrow">→</span>
+            <!-- Row 2 -->
+            <div class="dashboard-row">
+                <div class="dashboard-item" onclick="openModal(4)">
+                    <div class="item-number">04</div>
+                    <h2>Drilling & Blasting Agenda</h2>
+                    <div class="item-meta">
+                        <span class="item-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-item" onclick="openModal(5)">
+                    <div class="item-number">05</div>
+                    <h2>Operator Training Program</h2>
+                    <div class="item-meta">
+                        <span class="item-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div class="dashboard-item" onclick="openModal(6)">
+                    <div class="item-number">06</div>
+                    <h2>Crusher Competitor Study</h2>
+                    <div class="item-meta">
+                        <span class="item-arrow">→</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="dashboard-item" onclick="openModal(3)">
-                <div class="item-number">03</div>
-                <h2>Mining & Bench Planning</h2>
-                <div class="item-meta">
-                    <span class="item-arrow">→</span>
+            <!-- Row 3 -->
+            <div class="dashboard-row">
+                <div class="dashboard-item" onclick="openModal(7)">
+                    <div class="item-number">07</div>
+                    <h2>Surveyor Appointment</h2>
+                    <div class="item-meta">
+                        <span class="item-arrow">→</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="dashboard-item" onclick="openModal(4)">
-                <div class="item-number">04</div>
-                <h2>Drilling & Blasting Agenda</h2>
-                <div class="item-meta">
-                    <span class="item-arrow">→</span>
+                
+                <div class="dashboard-item" onclick="openModal(8)">
+                    <div class="item-number">08</div>
+                    <h2>Plant Operational Time</h2>
+                    <div class="item-meta">
+                        <span class="item-arrow">→</span>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="dashboard-item" onclick="openModal(5)">
-                <div class="item-number">05</div>
-                <h2>Operator Training Program</h2>
-                <div class="item-meta">
-                    <span class="item-arrow">→</span>
-                </div>
-            </div>
-            
-            <div class="dashboard-item" onclick="openModal(6)">
-                <div class="item-number">06</div>
-                <h2>Crusher Competitor Study</h2>
-                <div class="item-meta">
-                    <span class="item-arrow">→</span>
-                </div>
-            </div>
-            
-            <div class="dashboard-item" onclick="openModal(7)">
-                <div class="item-number">07</div>
-                <h2>Surveyor Appointment</h2>
-                <div class="item-meta">
-                    <span class="item-arrow">→</span>
-                </div>
-            </div>
-            
-            <div class="dashboard-item" onclick="openModal(8)">
-                <div class="item-number">08</div>
-                <h2>Plant Operational Time</h2>
-                <div class="item-meta">
-                    <span class="item-arrow">→</span>
-                </div>
-            </div>
-            
-            <div class="dashboard-item" onclick="openModal(9)">
-                <div class="item-number">09</div>
-                <h2>Alternate Access Road Plan</h2>
-                <div class="item-meta">
-                    <span class="item-arrow">→</span>
+                
+                <div class="dashboard-item" onclick="openModal(9)">
+                    <div class="item-number">09</div>
+                    <h2>Alternate Access Road Plan</h2>
+                    <div class="item-meta">
+                        <span class="item-arrow">→</span>
+                    </div>
                 </div>
             </div>
         </main>
