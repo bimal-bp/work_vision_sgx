@@ -351,6 +351,20 @@
             justify-content: center;
             color: var(--gray);
             overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
         }
         
         .modal-body {
@@ -387,6 +401,106 @@
             left: -15px;
         }
         
+        /* Full Image Modal Styles */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: imageModalFadeIn 0.3s ease;
+        }
+        
+        @keyframes imageModalFadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .image-modal-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .image-modal-close:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+        
+        .image-modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .image-modal-nav:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .image-modal-prev {
+            left: 30px;
+        }
+        
+        .image-modal-next {
+            right: 30px;
+        }
+        
+        .image-modal-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
         @media (max-width: 768px) {
             .title-box h1 {
                 font-size: 26px;
@@ -402,6 +516,20 @@
                 top: auto;
                 right: auto;
                 margin-top: 20px;
+            }
+            
+            .image-modal-nav, .image-modal-close {
+                font-size: 30px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .image-modal-prev {
+                left: 15px;
+            }
+            
+            .image-modal-next {
+                right: 15px;
             }
         }
     </style>
@@ -516,6 +644,17 @@
         </div>
     </div>
 
+    <!-- Full Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+        <span class="image-modal-nav image-modal-prev" onclick="changeImage(-1)">&#10094;</span>
+        <span class="image-modal-nav image-modal-next" onclick="changeImage(1)">&#10095;</span>
+        <div class="image-modal-content">
+            <img id="fullImage" src="" alt="Full size image">
+            <div class="image-modal-caption" id="imageCaption"></div>
+        </div>
+    </div>
+
     <script>
         // Set current date
         const currentDate = new Date();
@@ -539,6 +678,9 @@
         
         // Modal functionality
         const modal = document.getElementById('detailModal');
+        const imageModal = document.getElementById('imageModal');
+        let currentImages = [];
+        let currentImageIndex = 0;
         
         function openModal(itemNumber) {
             const itemData = getItemData(itemNumber);
@@ -547,6 +689,16 @@
             document.getElementById('modalSubtitle').textContent = itemData.subtitle;
             document.getElementById('modalBody').innerHTML = itemData.body;
             
+            // Add click handlers to images in the modal
+            setTimeout(() => {
+                const modalImages = document.querySelectorAll('.modal-image img');
+                modalImages.forEach((img, index) => {
+                    img.addEventListener('click', () => {
+                        openImageModal(img.src, index);
+                    });
+                });
+            }, 100);
+            
             modal.style.display = 'block';
         }
         
@@ -554,12 +706,69 @@
             modal.style.display = 'none';
         }
         
-        // Close modal when clicking outside of it
+        // Full image modal functions
+        function openImageModal(src, index) {
+            // Get all images from the current modal
+            const modalImages = document.querySelectorAll('.modal-image img');
+            currentImages = Array.from(modalImages).map(img => ({
+                src: img.src,
+                alt: img.alt
+            }));
+            
+            currentImageIndex = index;
+            updateImageModal();
+            imageModal.style.display = 'flex';
+        }
+        
+        function closeImageModal() {
+            imageModal.style.display = 'none';
+        }
+        
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            
+            // Loop around if at the beginning or end
+            if (currentImageIndex < 0) {
+                currentImageIndex = currentImages.length - 1;
+            } else if (currentImageIndex >= currentImages.length) {
+                currentImageIndex = 0;
+            }
+            
+            updateImageModal();
+        }
+        
+        function updateImageModal() {
+            const fullImage = document.getElementById('fullImage');
+            const imageCaption = document.getElementById('imageCaption');
+            
+            if (currentImages.length > 0 && currentImageIndex < currentImages.length) {
+                fullImage.src = currentImages[currentImageIndex].src;
+                imageCaption.textContent = currentImages[currentImageIndex].alt || `Image ${currentImageIndex + 1} of ${currentImages.length}`;
+            }
+        }
+        
+        // Close modals when clicking outside of them
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeModal();
             }
+            if (event.target == imageModal) {
+                closeImageModal();
+            }
         }
+        
+        // Keyboard navigation for image modal
+        document.addEventListener('keydown', function(event) {
+            if (imageModal.style.display === 'flex') {
+                if (event.key === 'Escape') {
+                    closeImageModal();
+                } else if (event.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeImage(1);
+                }
+            }
+        });
         
         // Sample data for each item
         function getItemData(itemNumber) {
@@ -577,30 +786,20 @@
                         </ul>
                         
                         <h3>Trial Results</h3>
-                        <div class="modal-image" style="height: 250px; margin-bottom: 20px;">
-                            <a href="https://github.com/bimal-bp/work_vision_sgx/blob/main/Screenshot%202025-10-11%20124309.png" target="_blank">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-11%20124309.png" 
-                                     alt="Trial Results Analysis" 
-                                     style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
-                            </a>
+                        <div class="modal-image">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-11%20124309.png" 
+                                 alt="Trial Results Analysis">
                         </div>
                         
                         <h3>New Plan</h3>
-                        <div class="modal-image" style="height: 250px; margin-bottom: 20px;">
-                            <a href="https://github.com/bimal-bp/work_vision_sgx/blob/main/Screenshot%202025-10-10%20174102.png" target="_blank">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-10%20174102.png" 
-                                     alt="Optimization Strategy" 
-                                     style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
-                            </a>
+                        <div class="modal-image">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-10%20174102.png" 
+                                 alt="Optimization Strategy">
                         </div>
 
-                        
-                         <h3>New Conveyor Questions</h3>
-                        <div class="modal-image" style="height: 250px; margin-bottom: 20px;">
-                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                Conveyor System Analysis<br>
-                                <small>Technical specifications and requirements</small>
-                            </div>
+                        <h3>New Conveyor Quatation</h3>
+                        <div class="modal-image">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/CONVEROYOR%20QUATION.png" 
                         </div>
                         
                         <h3>Project Timeline</h3>
@@ -630,7 +829,12 @@
                         <p>Phased implementation over 6 months with minimal disruption to ongoing operations. Includes comprehensive testing and operator training phases.</p>
                         
                         <h3>Technical Specifications</h3>
-                        <p>Technical specifications and performance data for the Rivo technology are being finalized with the equipment supplier.</p>
+                        <div class="modal-image">
+                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
+                                Technical Specifications<br>
+                                <small>Performance data and equipment details</small>
+                            </div>
+                        </div>
                     `
                 },
                 3: {
@@ -653,7 +857,12 @@
                         <p>Implementation of drone surveying and AI-powered planning tools to enhance accuracy and efficiency of mining operations.</p>
                         
                         <h3>Planning Documentation</h3>
-                        <p>Detailed planning methodology and approach are currently being developed by the mining engineering team.</p>
+                        <div class="modal-image">
+                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
+                                Mining Plan Documentation<br>
+                                <small>Detailed methodology and approach</small>
+                            </div>
+                        </div>
                     `
                 },
                 4: {
@@ -676,7 +885,12 @@
                         <p>Improved fragmentation leading to reduced downstream processing costs and minimized environmental impact through better control of blast effects.</p>
                         
                         <h3>Technical Implementation</h3>
-                        <p>Detailed procedures and safety measures are being developed in collaboration with drilling and blasting specialists.</p>
+                        <div class="modal-image">
+                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
+                                Drilling & Blasting Procedures<br>
+                                <small>Detailed procedures and safety measures</small>
+                            </div>
+                        </div>
                     `
                 },
                 5: {
@@ -699,7 +913,12 @@
                         <p>Phased rollout with initial focus on critical equipment operators, followed by comprehensive training for all operational staff.</p>
                         
                         <h3>Training Curriculum</h3>
-                        <p>Detailed curriculum and assessment methods are being developed by the training department in consultation with equipment manufacturers.</p>
+                        <div class="modal-image">
+                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
+                                Training Curriculum<br>
+                                <small>Detailed curriculum and assessment methods</small>
+                            </div>
+                        </div>
                     `
                 },
                 6: {
@@ -722,7 +941,12 @@
                         <p>Identification of improvement opportunities and development of a strategic roadmap for technology upgrades and operational enhancements.</p>
                         
                         <h3>Competitive Analysis</h3>
-                        <p>Detailed competitor comparison and insights will be compiled into a comprehensive market analysis report.</p>
+                        <div class="modal-image">
+                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
+                                Competitive Analysis Report<br>
+                                <small>Market analysis and insights</small>
+                            </div>
+                        </div>
                     `
                 },
                 7: {
@@ -745,7 +969,12 @@
                         <p>Phased approach with initial appointments in Q2 2025, followed by technology integration and training completion by Q1 2026.</p>
                         
                         <h3>Role Specifications</h3>
-                        <p>Detailed job specifications and qualifications are being finalized by the HR department in consultation with technical teams.</p>
+                        <div class="modal-image">
+                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
+                                Role Specifications<br>
+                                <small>Job specifications and qualifications</small>
+                            </div>
+                        </div>
                     `
                 },
                 8: {
@@ -768,7 +997,12 @@
                         <p>Implementation of IoT sensors, AI-powered predictive maintenance, and advanced analytics platforms to monitor equipment health and optimize maintenance schedules.</p>
                         
                         <h3>Operational Analysis</h3>
-                        <p>Current performance data and improvement targets are being analyzed to establish baseline metrics for the project.</p>
+                        <div class="modal-image">
+                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
+                                Performance Analysis<br>
+                                <small>Current performance data and improvement targets</small>
+                            </div>
+                        </div>
                     `
                 },
                 9: {
@@ -791,7 +1025,12 @@
                         <p>Enhanced operational resilience, reduced downtime during maintenance activities, and improved emergency response capabilities.</p>
                         
                         <h3>Route Planning</h3>
-                        <p>Route options and feasibility assessment are currently being conducted by the infrastructure planning team.</p>
+                        <div class="modal-image">
+                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
+                                Route Planning<br>
+                                <small>Route options and feasibility assessment</small>
+                            </div>
+                        </div>
                     `
                 }
             };
