@@ -168,7 +168,6 @@
             z-index: 10;
         }
         
-        /* Updated Dashboard Grid for Single Column Format */
         .dashboard-grid {
             display: flex;
             flex-direction: column;
@@ -266,7 +265,6 @@
             font-size: 18px;
         }
         
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -401,7 +399,6 @@
             left: -15px;
         }
         
-        /* Full Image Modal Styles */
         .image-modal {
             display: none;
             position: fixed;
@@ -630,7 +627,6 @@
         </main>
     </div>
 
-    <!-- Modal for displaying detailed information -->
     <div id="detailModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -644,7 +640,6 @@
         </div>
     </div>
 
-    <!-- Full Image Modal -->
     <div id="imageModal" class="image-modal">
         <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
         <span class="image-modal-nav image-modal-prev" onclick="changeImage(-1)">&#10094;</span>
@@ -706,9 +701,7 @@
             modal.style.display = 'none';
         }
         
-        // Full image modal functions
         function openImageModal(src, index) {
-            // Get all images from the current modal
             const modalImages = document.querySelectorAll('.modal-image img');
             currentImages = Array.from(modalImages).map(img => ({
                 src: img.src,
@@ -727,7 +720,6 @@
         function changeImage(direction) {
             currentImageIndex += direction;
             
-            // Loop around if at the beginning or end
             if (currentImageIndex < 0) {
                 currentImageIndex = currentImages.length - 1;
             } else if (currentImageIndex >= currentImages.length) {
@@ -747,7 +739,6 @@
             }
         }
         
-        // Close modals when clicking outside of them
         window.onclick = function(event) {
             if (event.target == modal) {
                 closeModal();
@@ -757,7 +748,6 @@
             }
         }
         
-        // Keyboard navigation for image modal
         document.addEventListener('keydown', function(event) {
             if (imageModal.style.display === 'flex') {
                 if (event.key === 'Escape') {
@@ -770,7 +760,6 @@
             }
         });
         
-        // Sample data for each item
         function getItemData(itemNumber) {
             const data = {
                 1: {
@@ -820,12 +809,6 @@
                             <img src="https://via.placeholder.com/800x400?text=VSI+to+Rivo+Conversion" 
                                  alt="VSI to Rivo Conversion Diagram">
                         </div>
-                        <h3>Expected Benefits</h3>
-                        <ul>
-                            <li>Improved sand quality and consistency</li>
-                            <li>Reduced operational costs</li>
-                            <li>Enhanced production efficiency</li>
-                        </ul>
                     `
                 },
                 3: {
@@ -834,26 +817,6 @@
                     body: `
                         <h3>Project Overview</h3>
                         <p>This initiative focuses on developing comprehensive mining plans that maximize resource extraction while minimizing environmental impact and operational costs.</p>
-                        
-                        <h3>Key Components</h3>
-                        <ul>
-                            <li>Advanced 3D geological modeling</li>
-                            <li>Bench height and width optimization</li>
-                            <li>Haul road design improvements</li>
-                            <li>Waste management and disposal planning</li>
-                            <li>Slope stability analysis</li>
-                        </ul>
-                        
-                        <h3>Technology Integration</h3>
-                        <p>Implementation of drone surveying and AI-powered planning tools to enhance accuracy and efficiency of mining operations.</p>
-                        
-                        <h3>Planning Documentation</h3>
-                        <div class="modal-image">
-                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                Mining Plan Documentation<br>
-                                <small>Detailed methodology and approach</small>
-                            </div>
-                        </div>
                     `
                 },
                 4: {
@@ -861,118 +824,38 @@
                     subtitle: "Advanced techniques for precision drilling and controlled blasting",
                     body: `
                         <h3>Project Overview</h3>
-                        <p>Implementation of modern drilling and blasting methodologies to improve fragmentation, reduce vibration impacts, and enhance overall operational efficiency.</p>
-                        
-                        <h3>Key Features</h3>
-                        <ul>
-                            <li>Precision drilling patterns using GPS technology</li>
-                            <li>Advanced explosive selection and loading techniques</li>
-                            <li>Real-time vibration monitoring systems</li>
-                            <li>Blast optimization software implementation</li>
-                            <li>Enhanced safety protocols and training</li>
-                        </ul>
-                        
-                        <h3>Expected Impact</h3>
-                        <p>Improved fragmentation leading to reduced downstream processing costs and minimized environmental impact through better control of blast effects.</p>
-                        
-                        <h3>Technical Implementation</h3>
-                        <div class="modal-image">
-                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                Drilling & Blasting Procedures<br>
-                                <small>Detailed procedures and safety measures</small>
-                            </div>
-                        </div>
+                        <p>Details for the drilling and blasting agenda will be updated soon.</p>
                     `
                 },
                 5: {
                     title: "Operator Training Program",
                     subtitle: "Comprehensive skill development for equipment operators",
                     body: `
-                        <h3>Program Overview</h3>
-                        <p>A structured training program designed to enhance operator proficiency, safety awareness, and equipment knowledge across all operational areas.</p>
-                        
-                        <h3>Program Highlights</h3>
-                        <ul>
-                            <li>Simulator-based training modules for heavy equipment</li>
-                            <li>Safety protocol certification programs</li>
-                            <li>Equipment-specific operational techniques</li>
-                            <li>Performance benchmarking and evaluation</li>
-                            <li>Advanced troubleshooting and maintenance training</li>
-                        </ul>
-                        
-                        <h3>Implementation Strategy</h3>
-                        <p>Phased rollout with initial focus on critical equipment operators, followed by comprehensive training for all operational staff.</p>
-                        
-                        <h3>Training Curriculum</h3>
-                        <div class="modal-image">
-                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                Training Curriculum<br>
-                                <small>Detailed curriculum and assessment methods</small>
-                            </div>
-                        </div>
+                        <h3>Project Overview</h3>
+                        <p>Details for the operator training program will be updated soon.</p>
                     `
                 },
                 6: {
                     title: "Crusher Competitor Study",
                     subtitle: "Market analysis of competing crushing technologies and methodologies",
                     body: `
-                        <h3>Study Overview</h3>
-                        <p>Comprehensive study of competitor crushing operations to identify best practices, technological advantages, and operational efficiencies that can be implemented in our facilities.</p>
-                        
-                        <h3>Study Areas</h3>
-                        <ul>
-                            <li>Equipment efficiency and performance comparisons</li>
-                            <li>Maintenance cost and downtime analysis</li>
-                            <li>Throughput and capacity benchmarks</li>
-                            <li>Technology adoption trends in the industry</li>
-                            <li>Operational best practices and innovations</li>
-                        </ul>
-                        
-                        <h3>Expected Outcomes</h3>
-                        <p>Identification of improvement opportunities and development of a strategic roadmap for technology upgrades and operational enhancements.</p>
-                        
-                        <h3>Competitive Analysis</h3>
-                        <div class="modal-image">
-                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                Competitive Analysis Report<br>
-                                <small>Market analysis and insights</small>
-                            </div>
-                        </div>
+                        <h3>Project Overview</h3>
+                        <p>Details for the crusher competitor study will be updated soon.</p>
                     `
                 },
                 7: {
                     title: "Surveyor Appointment",
                     subtitle: "Strategic hiring and deployment of surveying professionals",
                     body: `
-                        <h3>Initiative Overview</h3>
-                        <p>Strategic initiative to strengthen our surveying capabilities through targeted recruitment, professional development, and technology integration.</p>
-                        
-                        <h3>Key Aspects</h3>
-                        <ul>
-                            <li>Specialized skill requirement analysis</li>
-                            <li>Competitive recruitment strategy development</li>
-                            <li>Comprehensive training program design</li>
-                            <li>Advanced technology integration planning</li>
-                            <li>Career development and retention strategies</li>
-                        </ul>
-                        
-                        <h3>Implementation Timeline</h3>
-                        <p>Phased approach with initial appointments in Q2 2025, followed by technology integration and training completion by Q1 2026.</p>
-                        
-                        <h3>Role Specifications</h3>
-                        <div class="modal-image">
-                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                Role Specifications<br>
-                                <small>Job specifications and qualifications</small>
-                            </div>
-                        </div>
+                        <h3>Project Overview</h3>
+                        <p>Details for the surveyor appointment will be updated soon.</p>
                     `
                 },
                 8: {
                     title: "Plant Running Hours",
                     subtitle: "Maximizing plant availability and operational efficiency",
                     body: `
-                        <h3>Plants Operational Hrs</h3> 
+                        <h3>Plant Operational Hours</h3> 
                         <div class="modal-image">
                             <div style="padding:30px; font-size:16px; color:#333; background:#f0f2f5; border-radius:8px;">
                                 <strong>Shift-wise Operation Summary:</strong><br><br>
@@ -1021,27 +904,7 @@
                     subtitle: "Development of secondary access routes for operational continuity",
                     body: `
                         <h3>Project Overview</h3>
-                        <p>Strategic planning for alternate access roads to ensure uninterrupted operations during maintenance, emergencies, or peak operational periods.</p>
-                        
-                        <h3>Plan Components</h3>
-                        <ul>
-                            <li>Comprehensive route feasibility studies</li>
-                            <li>Environmental impact assessments</li>
-                            <li>Detailed construction timeline and budget</li>
-                            <li>Traffic management and safety protocols</li>
-                            <li>Stakeholder engagement and approval processes</li>
-                        </ul>
-                        
-                        <h3>Expected Benefits</h3>
-                        <p>Enhanced operational resilience, reduced downtime during maintenance activities, and improved emergency response capabilities.</p>
-                        
-                        <h3>Route Planning</h3>
-                        <div class="modal-image">
-                            <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                Route Planning<br>
-                                <small>Route options and feasibility assessment</small>
-                            </div>
-                        </div>
+                        <p>Details for the alternate access road plan will be updated soon.</p>
                     `
                 }
             };
