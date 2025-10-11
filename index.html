@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SGX Vision FY 2025-26 - Scope of Work</title>
+    <title>SGX Vision Financial Year 2025-26</title>
     <style>
         * {
             margin: 0;
@@ -13,348 +13,358 @@
         }
         
         body {
-            background-color: #ffffff;
+            background-color: #f5f7fa;
             color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             padding: 20px;
         }
         
         .container {
-            width: 90%;
             max-width: 1200px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin: 20px 0;
-            border: 1px solid #e0e0e0;
+            margin: 0 auto;
         }
         
-        .slide {
-            display: none;
-            padding: 40px;
-            min-height: 600px;
-        }
-        
-        .active {
-            display: block;
-        }
-        
-        h1 {
-            color: #1a2a6c;
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        h2 {
-            color: #b21f1f;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        h3 {
-            color: #1a2a6c;
-            font-size: 1.5rem;
-            margin: 25px 0 15px;
-            border-bottom: 2px solid #fdbb2d;
-            padding-bottom: 8px;
-        }
-        
-        .vision-btn {
-            display: block;
-            width: 300px;
-            margin: 30px auto;
-            padding: 15px 30px;
-            background: linear-gradient(to right, #1a2a6c, #b21f1f);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .vision-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(to right, #b21f1f, #1a2a6c);
-        }
-        
-        .columns {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        .column {
-            flex: 1;
-        }
-        
-        .agenda-item {
-            background-color: #f8f9fa;
-            border-left: 5px solid #1a2a6c;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .agenda-item:hover {
-            transform: translateX(5px);
-            background-color: #e9ecef;
-            border-left-color: #fdbb2d;
-        }
-        
-        .agenda-item.active {
-            background-color: #1a2a6c;
-            color: white;
-            border-left-color: #fdbb2d;
-        }
-        
-        .agenda-title {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-        
-        .agenda-desc {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .agenda-item.active .agenda-desc {
-            color: #e0e0e0;
-        }
-        
-        .detail-content {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-buttons {
+        header {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
         }
         
-        .nav-btn {
-            padding: 10px 25px;
-            background-color: #1a2a6c;
+        .title-box {
+            background-color: #1a3a5f;
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .nav-btn:hover {
-            background-color: #b21f1f;
-            transform: translateY(-3px);
+        .title-box h1 {
+            font-size: 28px;
+            font-weight: 600;
         }
         
-        .presenter {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #1a2a6c;
-            margin-top: 10px;
-            font-weight: bold;
+        .project-head {
+            text-align: right;
+            font-size: 16px;
+            color: #555;
         }
         
-        .footer {
-            text-align: center;
-            margin-top: 20px;
+        .date {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 14px;
             color: #666;
-            font-size: 0.9rem;
         }
         
-        @media (max-width: 768px) {
-            .columns {
-                flex-direction: column;
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .dashboard-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 5px solid #1a3a5f;
+            cursor: pointer;
+        }
+        
+        .dashboard-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left-color: #2a5a8f;
+        }
+        
+        .dashboard-item h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a3a5f;
+            margin-bottom: 10px;
+        }
+        
+        .placeholder {
+            color: #888;
+            font-style: italic;
+            font-size: 14px;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: #333;
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            color: #1a3a5f;
+            margin-bottom: 10px;
+        }
+        
+        .modal-subtitle {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .modal-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+        
+        .modal-body {
+            line-height: 1.6;
+        }
+        
+        @media (min-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
             }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.6rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Title Slide -->
-        <div class="slide active" id="slide1">
-            <h1>SGX Vision Financial Year 2025-26</h1>
-            <h2>Strategic Operational Agenda</h2>
-            <button class="vision-btn" onclick="showSlide(2)">VISION & ACTION</button>
-        </div>
+        <div class="date" id="current-date">Loading date...</div>
         
-        <!-- Agenda Slide -->
-        <div class="slide" id="slide2">
-            <h2>Operational Responsibilities & Key Focus Areas</h2>
-            
-            <div class="columns">
-                <div class="column">
-                    <div class="agenda-item" onclick="showDetail(1)">
-                        <div class="agenda-title">1. METSO Plant Optimization</div>
-                    </div>
-                    
-                    <div class="agenda-item" onclick="showDetail(2)">
-                        <div class="agenda-title">2. VSI to Rivo Conversion</div>
-                    </div>
-                    
-                    <div class="agenda-item" onclick="showDetail(3)">
-                        <div class="agenda-title">3. Mining & Bench Planning</div>
-                    </div>
-                    
-                    <div class="agenda-item" onclick="showDetail(4)">
-                        <div class="agenda-title">4. Drilling & Blasting Agenda</div>
-                    </div>
-                    
-                    <div class="agenda-item" onclick="showDetail(5)">
-                        <div class="agenda-title">5. Operator Training Program</div>
-                    </div>
-                </div>
-                
-                <div class="column">
-                    <div class="agenda-item" onclick="showDetail(6)">
-                        <div class="agenda-title">6. Crusher Competitor Study</div>
-                    </div>
-                    
-                    <div class="agenda-item" onclick="showDetail(7)">
-                        <div class="agenda-title">7. Surveyor Appointment</div>
-                    </div>
-                    
-                    <div class="agenda-item" onclick="showDetail(8)">
-                        <div class="agenda-title">8. Plant Operational Time</div>
-                    </div>
-                    
-                    <div class="agenda-item" onclick="showDetail(9)">
-                        <div class="agenda-title">9. Alternate Access Road Plan</div>
-                    </div>
-                </div>
+        <header>
+            <div class="title-box">
+                <h1>SGX Vision Financial Year 2025-26</h1>
             </div>
-            
-            <div class="nav-buttons">
-                <button class="nav-btn" onclick="showSlide(1)">Previous</button>
-                <button class="nav-btn" onclick="showSlide(3)">Next</button>
+            <div class="project-head">
+                <p>Project Head</p>
+                <h3>Arun Kumar</h3>
             </div>
-        </div>
+        </header>
         
-        <!-- Detail Slide -->
-        <div class="slide" id="slide3">
-            <h2 id="detail-title">Responsibility Details</h2>
-            
-            <div class="detail-content" id="detail-content">
-                <p>Select an agenda item to view details</p>
+        <main class="dashboard-grid">
+            <div class="dashboard-item" onclick="openModal(1)">
+                <h2>1. METSO Plant Optimization</h2>
+                <p class="placeholder">Text and image will be added later</p>
             </div>
             
-            <div class="nav-buttons">
-                <button class="nav-btn" onclick="showSlide(2)">Back to Agenda</button>
-                <button class="nav-btn" onclick="showSlide(1)">Back to Title</button>
+            <div class="dashboard-item" onclick="openModal(2)">
+                <h2>2. VSI to Rivo Conversion</h2>
+                <p class="placeholder">Text and image will be added later</p>
             </div>
-        </div>
+            
+            <div class="dashboard-item" onclick="openModal(3)">
+                <h2>3. Mining & Bench Planning</h2>
+                <p class="placeholder">Text and image will be added later</p>
+            </div>
+            
+            <div class="dashboard-item" onclick="openModal(4)">
+                <h2>4. Drilling & Blasting Agenda</h2>
+                <p class="placeholder">Text and image will be added later</p>
+            </div>
+            
+            <div class="dashboard-item" onclick="openModal(5)">
+                <h2>5. Operator Training Program</h2>
+                <p class="placeholder">Text and image will be added later</p>
+            </div>
+            
+            <div class="dashboard-item" onclick="openModal(6)">
+                <h2>6. Crusher Competitor Study</h2>
+                <p class="placeholder">Text and image will be added later</p>
+            </div>
+            
+            <div class="dashboard-item" onclick="openModal(7)">
+                <h2>7. Surveyor Appointment</h2>
+                <p class="placeholder">Text and image will be added later</p>
+            </div>
+            
+            <div class="dashboard-item" onclick="openModal(8)">
+                <h2>8. Plant Operational Time</h2>
+                <p class="placeholder">Text and image will be added later</p>
+            </div>
+            
+            <div class="dashboard-item" onclick="openModal(9)">
+                <h2>9. Alternate Access Road Plan</h2>
+                <p class="placeholder">Text and image will be added later</p>
+            </div>
+        </main>
     </div>
-    
-    <div class="footer">
-        SGX Vision Financial Year 2025-26 | Presentation for Mr. N. Arun Kumar
+
+    <!-- Modal for displaying detailed information -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Title</h2>
+                <p class="modal-subtitle" id="modalSubtitle">Subtitle</p>
+            </div>
+            <div class="modal-image" id="modalImage">
+                Image will be displayed here
+            </div>
+            <div class="modal-body" id="modalBody">
+                Detailed content will appear here.
+            </div>
+        </div>
     </div>
 
     <script>
-        // Show specific slide
-        function showSlide(slideNumber) {
-            // Hide all slides
-            document.querySelectorAll('.slide').forEach(slide => {
-                slide.classList.remove('active');
-            });
+        // Set current date
+        const currentDate = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = currentDate.toLocaleDateString('en-US', options);
+        
+        // Modal functionality
+        const modal = document.getElementById('detailModal');
+        
+        function openModal(itemNumber) {
+            // In a real application, you would fetch this data from a server or database
+            const itemData = getItemData(itemNumber);
             
-            // Show selected slide
-            document.getElementById('slide' + slideNumber).classList.add('active');
+            document.getElementById('modalTitle').textContent = itemData.title;
+            document.getElementById('modalSubtitle').textContent = itemData.subtitle;
+            document.getElementById('modalBody').innerHTML = itemData.body;
             
-            // Reset all agenda items to inactive state
-            document.querySelectorAll('.agenda-item').forEach(item => {
-                item.classList.remove('active');
-            });
+            // Set image - in a real app, this would be an actual image URL
+            const modalImage = document.getElementById('modalImage');
+            if (itemData.imageUrl) {
+                modalImage.innerHTML = `<img src="${itemData.imageUrl}" alt="${itemData.title}" style="width:100%; height:100%; object-fit:cover;">`;
+            } else {
+                modalImage.innerHTML = `<div style="padding:50px; text-align:center;">Image placeholder for ${itemData.title}</div>`;
+            }
+            
+            modal.style.display = 'block';
         }
         
-        // Show detail for specific agenda item
-        function showDetail(itemNumber) {
-            // Set all agenda items to inactive
-            document.querySelectorAll('.agenda-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Activate the clicked item (visual feedback)
-            event.currentTarget.classList.add('active');
-            
-            // Show the detail slide
-            showSlide(3);
-            
-            // Update detail content based on selected item
-            const detailTitle = document.getElementById('detail-title');
-            const detailContent = document.getElementById('detail-content');
-            
-            // Define content for each agenda item
-            const details = {
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Sample data for each item
+        function getItemData(itemNumber) {
+            const data = {
                 1: {
                     title: "METSO Plant Optimization",
-                    content: "<h3>Objective</h3><p>Achieve 230 TPH production capacity including Railway Ballast.</p><h3>Key Actions</h3><ul><li>Optimize current METSO plant operations</li><li>Increase throughput to meet 230 TPH target</li><li>Ensure quality standards for Railway Ballast production</li><li>Implement efficiency improvements in the workflow</li></ul><h3>Expected Outcomes</h3><p>Enhanced production capacity meeting the 230 TPH target with maintained quality standards.</p>"
+                    subtitle: "Enhancing efficiency and throughput of METSO processing facilities",
+                    body: "<p>This project focuses on optimizing the METSO plant operations to increase production capacity by 15% while reducing energy consumption. Key initiatives include:</p><ul><li>Process automation implementation</li><li>Equipment maintenance optimization</li><li>Throughput analysis and bottleneck identification</li><li>Operator training for optimized operations</li></ul>",
+                    imageUrl: "" // Add image URL here when available
                 },
                 2: {
                     title: "VSI to Rivo Conversion",
-                    content: "<h3>Objective</h3><p>Convert 100% of VSI production to Rivo Product.</p><h3>Key Actions</h3><ul><li>Plan and execute phased conversion strategy</li><li>Train operators on Rivo product specifications</li><li>Adjust equipment settings for optimal Rivo production</li><li>Monitor quality during transition period</li></ul><h3>Expected Outcomes</h3><p>Complete transition from VSI to Rivo product line while maintaining production efficiency.</p>"
+                    subtitle: "Transitioning from Vertical Shaft Impact to Rivo crushing technology",
+                    body: "<p>The VSI to Rivo conversion project aims to modernize our crushing operations with more efficient technology. Benefits include:</p><ul><li>25% reduction in energy consumption</li><li>Improved product shape and quality</li><li>Lower maintenance requirements</li><li>Enhanced operational safety</li></ul>",
+                    imageUrl: "" // Add image URL here when available
                 },
                 3: {
                     title: "Mining & Bench Planning",
-                    content: "<h3>Objective</h3><p>Proper planning with Mr. Siva Prasad for timely bench development.</p><h3>Key Actions</h3><ul><li>Coordinate with Mr. Siva Prasad on bench development schedule</li><li>Ensure timely availability of benches for drillers & blasters</li><li>Implement efficient mining sequence planning</li><li>Monitor bench development progress</li></ul><h3>Expected Outcomes</h3><p>Streamlined mining operations with properly developed benches available as needed.</p>"
+                    subtitle: "Strategic planning for optimized mining operations and bench design",
+                    body: "<p>This initiative focuses on developing comprehensive mining plans that maximize resource extraction while minimizing environmental impact. Key components:</p><ul><li>3D geological modeling</li><li>Bench height optimization</li><li>Haul road design improvements</li><li>Waste management planning</li></ul>",
+                    imageUrl: "" // Add image URL here when available
                 },
                 4: {
                     title: "Drilling & Blasting Agenda",
-                    content: "<h3>Objective</h3><p>Achieve 1000 holes per day with 5.5FL depth and 5 MT per hole output.</p><h3>Key Actions</h3><ul><li>Implement efficient drilling patterns</li><li>Optimize blasting techniques for better fragmentation</li><li>Engage with drillers to incorporate their experience</li><li>Identify and consult with D&B experts to reduce breaking costs</li></ul><h3>Expected Outcomes</h3><p>Increased drilling efficiency with reduced operational costs while maintaining safety standards.</p>"
+                    subtitle: "Advanced techniques for precision drilling and controlled blasting",
+                    body: "<p>Implementation of modern drilling and blasting methodologies to improve fragmentation and reduce vibration impacts. Features include:</p><ul><li>Precision drilling patterns</li><li>Advanced explosive selection</li><li>Vibration monitoring systems</li><li>Blast optimization software</li></ul>",
+                    imageUrl: "" // Add image URL here when available
                 },
                 5: {
                     title: "Operator Training Program",
-                    content: "<h3>Objective</h3><p>Train operators on breaking patterns to avoid unnecessary boulder size reduction and cost increases.</p><h3>Key Actions</h3><ul><li>Develop comprehensive training modules on breaking patterns</li><li>Schedule hands-on training sessions</li><li>Implement monitoring to ensure proper technique application</li><li>Establish feedback mechanism for continuous improvement</li></ul><h3>Expected Outcomes</h3><p>Skilled operators who efficiently execute breaking patterns, optimizing costs and productivity.</p>"
+                    subtitle: "Comprehensive skill development for equipment operators",
+                    body: "<p>A structured training program designed to enhance operator proficiency, safety awareness, and equipment knowledge. Program highlights:</p><ul><li>Simulator-based training modules</li><li>Safety protocol certification</li><li>Equipment-specific operational techniques</li><li>Performance benchmarking</li></ul>",
+                    imageUrl: "" // Add image URL here when available
                 },
                 6: {
                     title: "Crusher Competitor Study",
-                    content: "<h3>Objective</h3><p>Conduct comprehensive analysis of competitors' crushers and operations.</p><h3>Key Actions</h3><ul><li>Identify number of crushers with own mines (capacity & size)</li><li>Categorize 2-stage vs 3-stage crushers in the market</li><li>Document makes of 3-stage crusher plants</li><li>Analyze location advantages and logistics costs</li></ul><h3>Expected Outcomes</h3><p>Strategic insights into competitor operations to inform business decisions and competitive positioning.</p>"
+                    subtitle: "Market analysis of competing crushing technologies and methodologies",
+                    body: "<p>Comprehensive study of competitor crushing operations to identify best practices and technological advantages. Study areas include:</p><ul><li>Equipment efficiency comparisons</li><li>Maintenance cost analysis</li><li>Throughput benchmarks</li><li>Technology adoption trends</li></ul>",
+                    imageUrl: "" // Add image URL here when available
                 },
                 7: {
                     title: "Surveyor Appointment",
-                    content: "<h3>Objective</h3><p>Appoint surveyor to measure boulder production, mine development, and plant stock.</p><h3>Key Actions</h3><ul><li>Identify qualified surveyor candidates</li><li>Define measurement protocols and reporting standards</li><li>Establish regular measurement schedule</li><li>Implement data recording and analysis system</li></ul><h3>Expected Outcomes</h3><p>Accurate measurement and tracking of key production metrics for informed decision-making.</p>"
+                    subtitle: "Strategic hiring and deployment of surveying professionals",
+                    body: "<p>Initiative to strengthen our surveying capabilities through targeted recruitment and professional development. Key aspects:</p><ul><li>Specialized skill requirement analysis</li><li>Recruitment strategy development</li><li>Training program design</li><li>Technology integration planning</li></ul>",
+                    imageUrl: "" // Add image URL here when available
                 },
                 8: {
                     title: "Plant Operational Time",
-                    content: "<h3>Objective</h3><p>Define plant operational time framework for 18 hours per day operations.</p><h3>Key Actions</h3><ul><li>Analyze current operational time utilization</li><li>Develop shift schedules for 18-hour operations</li><li>Plan maintenance windows within operational framework</li><li>Establish monitoring system for operational efficiency</li></ul><h3>Expected Outcomes</h3><p>Optimized 18-hour daily operational schedule maximizing plant utilization and productivity.</p>"
+                    subtitle: "Maximizing plant availability and operational efficiency",
+                    body: "<p>Project focused on increasing plant operational time through improved maintenance scheduling and operational practices. Objectives:</p><ul><li>Reduce unplanned downtime by 30%</li><li>Implement predictive maintenance systems</li><li>Optimize shift scheduling</li><li>Enhance spare parts management</li></ul>",
+                    imageUrl: "" // Add image URL here when available
                 },
                 9: {
                     title: "Alternate Access Road Plan",
-                    content: "<h3>Objective</h3><p>Develop planning for alternate access road for tippers and identify bottlenecks.</p><h3>Key Actions</h3><ul><li>Assess current access road limitations</li><li>Identify potential alternate routes</li><li>Highlight existing and potential bottlenecks</li><li>Develop implementation plan for optimal access road solution</li></ul><h3>Expected Outcomes</h3><p>Improved logistics flow with reduced bottlenecks, enhancing overall operational efficiency.</p>"
+                    subtitle: "Development of secondary access routes for operational continuity",
+                    body: "<p>Strategic planning for alternate access roads to ensure uninterrupted operations during maintenance or emergencies. Plan includes:</p><ul><li>Route feasibility studies</li><li>Environmental impact assessments</li><li>Construction timeline and budget</li><li>Traffic management protocols</li></ul>",
+                    imageUrl: "" // Add image URL here when available
                 }
             };
             
-            // Update the detail slide with selected item content
-            if (details[itemNumber]) {
-                detailTitle.textContent = details[itemNumber].title;
-                detailContent.innerHTML = details[itemNumber].content;
-            }
+            return data[itemNumber] || {
+                title: "Project " + itemNumber,
+                subtitle: "Details for project " + itemNumber,
+                body: "<p>Detailed information for this project will be available soon.</p>",
+                imageUrl: ""
+            };
         }
     </script>
 </body>
-</html> i want the key buttons direct in the home page VISION & ACTION dont need this to click set the buttons little big and diorect in the home page and  provide the full code  properly 
+</html>
