@@ -510,9 +510,6 @@
                 <h2 class="modal-title" id="modalTitle">Title</h2>
                 <p class="modal-subtitle" id="modalSubtitle">Subtitle</p>
             </div>
-            <div class="modal-image" id="modalImage">
-                Image will be displayed here
-            </div>
             <div class="modal-body" id="modalBody">
                 Detailed content will appear here.
             </div>
@@ -550,14 +547,6 @@
             document.getElementById('modalSubtitle').textContent = itemData.subtitle;
             document.getElementById('modalBody').innerHTML = itemData.body;
             
-            // Set image - in a real app, this would be an actual image URL
-            const modalImage = document.getElementById('modalImage');
-            if (itemData.imageUrl) {
-                modalImage.innerHTML = `<img src="${itemData.imageUrl}" alt="${itemData.title}" style="width:100%; height:100%; object-fit:cover;">`;
-            } else {
-                modalImage.innerHTML = `<div style="padding:50px; text-align:center; font-size:18px; color:#6c757d;">Visual representation for ${itemData.title}</div>`;
-            }
-            
             modal.style.display = 'block';
         }
         
@@ -590,24 +579,24 @@
                         <h3>Trial Results</h3>
                         <div class="modal-image" style="height: 250px; margin-bottom: 20px;">
                             <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                Trial Results Image<br>
-                                <small>Image will be added from GitHub</small>
+                                Trial Results Analysis<br>
+                                <small>Detailed performance metrics and analysis</small>
                             </div>
                         </div>
                         
                         <h3>New Plan</h3>
                         <div class="modal-image" style="height: 250px; margin-bottom: 20px;">
                             <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                New Plan Image<br>
-                                <small>Image will be added from GitHub</small>
+                                Optimization Strategy<br>
+                                <small>Implementation roadmap and expected outcomes</small>
                             </div>
                         </div>
                         
-                        <h3>New Conveyor Questions</h3>
+                         <h3>New Conveyor Questions</h3>
                         <div class="modal-image" style="height: 250px; margin-bottom: 20px;">
                             <div style="padding:50px; text-align:center; font-size:18px; color:#6c757d; background: #f0f2f5; border-radius: 8px;">
-                                Conveyor Questions Image<br>
-                                <small>Image will be added from GitHub</small>
+                                Conveyor System Analysis<br>
+                                <small>Technical specifications and requirements</small>
                             </div>
                         </div>
                         
@@ -616,8 +605,7 @@
                             <li>Work Start Date: June 15, 2025</li>
                             <li>Work End Date: September 30, 2025</li>
                         </ul>
-                    `,
-                    imageUrl: "" // Add image URL here when available
+                    `
                 },
                 2: {
                     title: "VSI to Rivo Conversion",
@@ -637,8 +625,10 @@
                         
                         <h3>Implementation Plan</h3>
                         <p>Phased implementation over 6 months with minimal disruption to ongoing operations. Includes comprehensive testing and operator training phases.</p>
-                    `,
-                    imageUrl: "" // Add image URL here when available
+                        
+                        <h3>Technical Specifications</h3>
+                        <p>Technical specifications and performance data for the Rivo technology are being finalized with the equipment supplier.</p>
+                    `
                 },
                 3: {
                     title: "Mining & Bench Planning",
@@ -658,8 +648,10 @@
                         
                         <h3>Technology Integration</h3>
                         <p>Implementation of drone surveying and AI-powered planning tools to enhance accuracy and efficiency of mining operations.</p>
-                    `,
-                    imageUrl: "" // Add image URL here when available
+                        
+                        <h3>Planning Documentation</h3>
+                        <p>Detailed planning methodology and approach are currently being developed by the mining engineering team.</p>
+                    `
                 },
                 4: {
                     title: "Drilling & Blasting Agenda",
@@ -679,8 +671,10 @@
                         
                         <h3>Expected Impact</h3>
                         <p>Improved fragmentation leading to reduced downstream processing costs and minimized environmental impact through better control of blast effects.</p>
-                    `,
-                    imageUrl: "" // Add image URL here when available
+                        
+                        <h3>Technical Implementation</h3>
+                        <p>Detailed procedures and safety measures are being developed in collaboration with drilling and blasting specialists.</p>
+                    `
                 },
                 5: {
                     title: "Operator Training Program",
@@ -700,8 +694,10 @@
                         
                         <h3>Implementation Strategy</h3>
                         <p>Phased rollout with initial focus on critical equipment operators, followed by comprehensive training for all operational staff.</p>
-                    `,
-                    imageUrl: "" // Add image URL here when available
+                        
+                        <h3>Training Curriculum</h3>
+                        <p>Detailed curriculum and assessment methods are being developed by the training department in consultation with equipment manufacturers.</p>
+                    `
                 },
                 6: {
                     title: "Crusher Competitor Study",
@@ -721,8 +717,10 @@
                         
                         <h3>Expected Outcomes</h3>
                         <p>Identification of improvement opportunities and development of a strategic roadmap for technology upgrades and operational enhancements.</p>
-                    `,
-                    imageUrl: "" // Add image URL here when available
+                        
+                        <h3>Competitive Analysis</h3>
+                        <p>Detailed competitor comparison and insights will be compiled into a comprehensive market analysis report.</p>
+                    `
                 },
                 7: {
                     title: "Surveyor Appointment",
@@ -742,8 +740,10 @@
                         
                         <h3>Implementation Timeline</h3>
                         <p>Phased approach with initial appointments in Q2 2025, followed by technology integration and training completion by Q1 2026.</p>
-                    `,
-                    imageUrl: "" // Add image URL here when available
+                        
+                        <h3>Role Specifications</h3>
+                        <p>Detailed job specifications and qualifications are being finalized by the HR department in consultation with technical teams.</p>
+                    `
                 },
                 8: {
                     title: "Plant Operational Time",
@@ -763,8 +763,10 @@
                         
                         <h3>Technology Integration</h3>
                         <p>Implementation of IoT sensors, AI-powered predictive maintenance, and advanced analytics platforms to monitor equipment health and optimize maintenance schedules.</p>
-                    `,
-                    imageUrl: "" // Add image URL here when available
+                        
+                        <h3>Operational Analysis</h3>
+                        <p>Current performance data and improvement targets are being analyzed to establish baseline metrics for the project.</p>
+                    `
                 },
                 9: {
                     title: "Alternate Access Road Plan",
@@ -784,16 +786,17 @@
                         
                         <h3>Expected Benefits</h3>
                         <p>Enhanced operational resilience, reduced downtime during maintenance activities, and improved emergency response capabilities.</p>
-                    `,
-                    imageUrl: "" // Add image URL here when available
+                        
+                        <h3>Route Planning</h3>
+                        <p>Route options and feasibility assessment are currently being conducted by the infrastructure planning team.</p>
+                    `
                 }
             };
             
             return data[itemNumber] || {
                 title: "Project " + itemNumber,
                 subtitle: "Details for project " + itemNumber,
-                body: "<p>Detailed information for this project will be available soon.</p>",
-                imageUrl: ""
+                body: "<p>Detailed information for this project will be available soon.</p>"
             };
         }
     </script>
