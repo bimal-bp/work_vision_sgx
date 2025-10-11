@@ -4,18 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGX Vision Financial Year 2025-26</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a3a5f;
+            --primary-light: #2a5a8f;
+            --secondary: #ff6b35;
+            --accent: #00b4d8;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
         
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+            color: var(--dark);
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
             padding: 20px;
+            min-height: 100vh;
         }
         
         .container {
@@ -27,31 +45,68 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            position: relative;
         }
         
         .title-box {
-            background-color: #1a3a5f;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
             text-align: center;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .title-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
         }
         
         .title-box h1 {
-            font-size: 28px;
-            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .title-box p {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 300;
         }
         
         .project-head {
             text-align: center;
             font-size: 16px;
-            color: #555;
+            color: var(--gray);
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .project-head p {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .project-head h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: var(--primary);
+            font-weight: 600;
         }
         
         .date {
@@ -59,43 +114,111 @@
             top: 20px;
             right: 20px;
             font-size: 14px;
-            color: #666;
+            color: var(--gray);
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
         
         .dashboard-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
         }
         
         .dashboard-item {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 25px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border-left: 5px solid #1a3a5f;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .dashboard-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
         
         .dashboard-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-left-color: #2a5a8f;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .dashboard-item:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .item-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
         }
         
         .dashboard-item h2 {
-            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
             font-weight: 600;
-            color: #1a3a5f;
-            margin-bottom: 10px;
+            color: var(--dark);
+            margin-bottom: 15px;
+            line-height: 1.3;
         }
         
         .item-description {
-            color: #555;
+            color: var(--gray);
             font-size: 14px;
             line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .item-status {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .status-planning {
+            background-color: rgba(255, 193, 7, 0.15);
+            color: #b38f00;
+        }
+        
+        .status-inprogress {
+            background-color: rgba(0, 180, 216, 0.15);
+            color: var(--accent);
+        }
+        
+        .item-arrow {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 18px;
         }
         
         /* Modal Styles */
@@ -109,76 +232,158 @@
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 1000;
             overflow-y: auto;
+            backdrop-filter: blur(5px);
         }
         
         .modal-content {
             position: relative;
             background-color: white;
             margin: 5% auto;
-            padding: 30px;
+            padding: 40px;
             width: 90%;
-            max-width: 800px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.4s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 20px;
+            top: 20px;
+            right: 25px;
             font-size: 28px;
             font-weight: bold;
-            color: #aaa;
+            color: var(--gray);
             cursor: pointer;
-            transition: color 0.3s;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
         
         .close-btn:hover {
-            color: #333;
+            color: var(--dark);
+            background-color: #f5f5f5;
         }
         
         .modal-header {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
         }
         
         .modal-title {
-            font-size: 24px;
-            color: #1a3a5f;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            color: var(--primary);
             margin-bottom: 10px;
+            font-weight: 700;
         }
         
         .modal-subtitle {
-            font-size: 16px;
-            color: #666;
+            font-size: 18px;
+            color: var(--gray);
             line-height: 1.5;
         }
         
         .modal-image {
             width: 100%;
-            max-height: 400px;
+            height: 300px;
             object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            background-color: #f0f0f0;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e4e8ed 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #888;
+            color: var(--gray);
+            overflow: hidden;
         }
         
         .modal-body {
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
-        @media (min-width: 768px) {
+        .modal-body h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            color: var(--primary);
+            margin: 25px 0 15px;
+        }
+        
+        .modal-body p {
+            margin-bottom: 15px;
+        }
+        
+        .modal-body ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-body li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 10px;
+        }
+        
+        .modal-body li::before {
+            content: '•';
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .progress-section {
+            margin-top: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            border-radius: 4px;
+            width: 0;
+            transition: width 1s ease;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        @media (max-width: 768px) {
             .dashboard-grid {
-                gap: 20px;
+                grid-template-columns: 1fr;
             }
             
-            .dashboard-item {
-                padding: 30px;
+            .title-box h1 {
+                font-size: 26px;
+            }
+            
+            .modal-content {
+                padding: 25px;
+                width: 95%;
             }
         }
     </style>
@@ -190,6 +395,7 @@
         <header>
             <div class="title-box">
                 <h1>SGX Vision Financial Year 2025-26</h1>
+                <p>Strategic Initiatives & Operational Excellence</p>
             </div>
             <div class="project-head">
                 <p>Project Head</p>
@@ -199,39 +405,93 @@
         
         <main class="dashboard-grid">
             <div class="dashboard-item" onclick="openModal(1)">
-                <h2>1. METSO Plant Optimization</h2>
+                <div class="item-number">01</div>
+                <h2>METSO Plant Optimization</h2>
+                <p class="item-description">Enhancing efficiency and throughput of METSO processing facilities through advanced automation and process improvements.</p>
+                <div class="item-meta">
+                    <span class="item-status status-inprogress">In Progress</span>
+                    <span class="item-arrow">→</span>
+                </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(2)">
-                <h2>2. VSI to Rivo Conversion</h2>
+                <div class="item-number">02</div>
+                <h2>VSI to Rivo Conversion</h2>
+                <p class="item-description">Transitioning from Vertical Shaft Impact to Rivo crushing technology for improved efficiency and product quality.</p>
+                <div class="item-meta">
+                    <span class="item-status status-planning">Planning</span>
+                    <span class="item-arrow">→</span>
+                </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(3)">
-                <h2>3. Mining & Bench Planning</h2>
+                <div class="item-number">03</div>
+                <h2>Mining & Bench Planning</h2>
+                <p class="item-description">Strategic planning for optimized mining operations and bench design to maximize resource extraction.</p>
+                <div class="item-meta">
+                    <span class="item-status status-inprogress">In Progress</span>
+                    <span class="item-arrow">→</span>
+                </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(4)">
-                <h2>4. Drilling & Blasting Agenda</h2>
+                <div class="item-number">04</div>
+                <h2>Drilling & Blasting Agenda</h2>
+                <p class="item-description">Advanced techniques for precision drilling and controlled blasting to improve fragmentation and safety.</p>
+                <div class="item-meta">
+                    <span class="item-status status-planning">Planning</span>
+                    <span class="item-arrow">→</span>
+                </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(5)">
-                <h2>5. Operator Training Program</h2>
+                <div class="item-number">05</div>
+                <h2>Operator Training Program</h2>
+                <p class="item-description">Comprehensive skill development program for equipment operators to enhance proficiency and safety awareness.</p>
+                <div class="item-meta">
+                    <span class="item-status status-inprogress">In Progress</span>
+                    <span class="item-arrow">→</span>
+                </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(6)">
-                <h2>6. Crusher Competitor Study</h2>
+                <div class="item-number">06</div>
+                <h2>Crusher Competitor Study</h2>
+                <p class="item-description">Market analysis of competing crushing technologies and methodologies to identify best practices.</p>
+                <div class="item-meta">
+                    <span class="item-status status-planning">Planning</span>
+                    <span class="item-arrow">→</span>
+                </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(7)">
-                <h2>7. Surveyor Appointment</h2>
+                <div class="item-number">07</div>
+                <h2>Surveyor Appointment</h2>
+                <p class="item-description">Strategic hiring and deployment of surveying professionals to strengthen operational capabilities.</p>
+                <div class="item-meta">
+                    <span class="item-status status-inprogress">In Progress</span>
+                    <span class="item-arrow">→</span>
+                </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(8)">
-                <h2>8. Plant Operational Time</h2>
+                <div class="item-number">08</div>
+                <h2>Plant Operational Time</h2>
+                <p class="item-description">Maximizing plant availability and operational efficiency through improved maintenance scheduling.</p>
+                <div class="item-meta">
+                    <span class="item-status status-inprogress">In Progress</span>
+                    <span class="item-arrow">→</span>
+                </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(9)">
-                <h2>9. Alternate Access Road Plan</h2>
+                <div class="item-number">09</div>
+                <h2>Alternate Access Road Plan</h2>
+                <p class="item-description">Development of secondary access routes for operational continuity during maintenance or emergencies.</p>
+                <div class="item-meta">
+                    <span class="item-status status-planning">Planning</span>
+                    <span class="item-arrow">→</span>
+                </div>
             </div>
         </main>
     </div>
@@ -250,6 +510,16 @@
             <div class="modal-body" id="modalBody">
                 Detailed content will appear here.
             </div>
+            <div class="progress-section">
+                <h3>Project Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-info">
+                    <span>Start Date: <span id="startDate">-</span></span>
+                    <span>Estimated Completion: <span id="completionDate">-</span></span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -263,19 +533,25 @@
         const modal = document.getElementById('detailModal');
         
         function openModal(itemNumber) {
-            // In a real application, you would fetch this data from a server or database
             const itemData = getItemData(itemNumber);
             
             document.getElementById('modalTitle').textContent = itemData.title;
             document.getElementById('modalSubtitle').textContent = itemData.subtitle;
             document.getElementById('modalBody').innerHTML = itemData.body;
+            document.getElementById('startDate').textContent = itemData.startDate;
+            document.getElementById('completionDate').textContent = itemData.completionDate;
+            
+            // Set progress bar
+            setTimeout(() => {
+                document.getElementById('progressFill').style.width = itemData.progress + '%';
+            }, 100);
             
             // Set image - in a real app, this would be an actual image URL
             const modalImage = document.getElementById('modalImage');
             if (itemData.imageUrl) {
                 modalImage.innerHTML = `<img src="${itemData.imageUrl}" alt="${itemData.title}" style="width:100%; height:100%; object-fit:cover;">`;
             } else {
-                modalImage.innerHTML = `<div style="padding:50px; text-align:center;">Image placeholder for ${itemData.title}</div>`;
+                modalImage.innerHTML = `<div style="padding:50px; text-align:center; font-size:18px; color:#6c757d;">Visual representation for ${itemData.title}</div>`;
             }
             
             modal.style.display = 'block';
@@ -298,55 +574,217 @@
                 1: {
                     title: "METSO Plant Optimization",
                     subtitle: "Enhancing efficiency and throughput of METSO processing facilities",
-                    body: "<p>This project focuses on optimizing the METSO plant operations to increase production capacity by 15% while reducing energy consumption. Key initiatives include:</p><ul><li>Process automation implementation</li><li>Equipment maintenance optimization</li><li>Throughput analysis and bottleneck identification</li><li>Operator training for optimized operations</li></ul>",
+                    body: `
+                        <h3>Project Overview</h3>
+                        <p>This project focuses on optimizing the METSO plant operations to increase production capacity by 15% while reducing energy consumption by 10%. The initiative includes comprehensive process analysis and implementation of advanced automation systems.</p>
+                        
+                        <h3>Key Initiatives</h3>
+                        <ul>
+                            <li>Process automation implementation with IoT sensors</li>
+                            <li>Predictive maintenance system deployment</li>
+                            <li>Throughput analysis and bottleneck identification</li>
+                            <li>Operator training for optimized operations</li>
+                            <li>Energy consumption monitoring and optimization</li>
+                        </ul>
+                        
+                        <h3>Expected Outcomes</h3>
+                        <p>Increased plant efficiency, reduced operational costs, and enhanced safety protocols. The project aligns with our sustainability goals by minimizing energy consumption and environmental impact.</p>
+                    `,
+                    startDate: "March 15, 2025",
+                    completionDate: "September 30, 2025",
+                    progress: 65,
                     imageUrl: "" // Add image URL here when available
                 },
                 2: {
                     title: "VSI to Rivo Conversion",
                     subtitle: "Transitioning from Vertical Shaft Impact to Rivo crushing technology",
-                    body: "<p>The VSI to Rivo conversion project aims to modernize our crushing operations with more efficient technology. Benefits include:</p><ul><li>25% reduction in energy consumption</li><li>Improved product shape and quality</li><li>Lower maintenance requirements</li><li>Enhanced operational safety</li></ul>",
+                    body: `
+                        <h3>Project Overview</h3>
+                        <p>The VSI to Rivo conversion project aims to modernize our crushing operations with more efficient technology that offers superior performance and reliability.</p>
+                        
+                        <h3>Key Benefits</h3>
+                        <ul>
+                            <li>25% reduction in energy consumption</li>
+                            <li>Improved product shape and quality</li>
+                            <li>Lower maintenance requirements and costs</li>
+                            <li>Enhanced operational safety features</li>
+                            <li>Increased throughput capacity</li>
+                        </ul>
+                        
+                        <h3>Implementation Plan</h3>
+                        <p>Phased implementation over 6 months with minimal disruption to ongoing operations. Includes comprehensive testing and operator training phases.</p>
+                    `,
+                    startDate: "June 1, 2025",
+                    completionDate: "December 15, 2025",
+                    progress: 20,
                     imageUrl: "" // Add image URL here when available
                 },
                 3: {
                     title: "Mining & Bench Planning",
                     subtitle: "Strategic planning for optimized mining operations and bench design",
-                    body: "<p>This initiative focuses on developing comprehensive mining plans that maximize resource extraction while minimizing environmental impact. Key components:</p><ul><li>3D geological modeling</li><li>Bench height optimization</li><li>Haul road design improvements</li><li>Waste management planning</li></ul>",
+                    body: `
+                        <h3>Project Overview</h3>
+                        <p>This initiative focuses on developing comprehensive mining plans that maximize resource extraction while minimizing environmental impact and operational costs.</p>
+                        
+                        <h3>Key Components</h3>
+                        <ul>
+                            <li>Advanced 3D geological modeling</li>
+                            <li>Bench height and width optimization</li>
+                            <li>Haul road design improvements</li>
+                            <li>Waste management and disposal planning</li>
+                            <li>Slope stability analysis</li>
+                        </ul>
+                        
+                        <h3>Technology Integration</h3>
+                        <p>Implementation of drone surveying and AI-powered planning tools to enhance accuracy and efficiency of mining operations.</p>
+                    `,
+                    startDate: "January 10, 2025",
+                    completionDate: "August 20, 2025",
+                    progress: 45,
                     imageUrl: "" // Add image URL here when available
                 },
                 4: {
                     title: "Drilling & Blasting Agenda",
                     subtitle: "Advanced techniques for precision drilling and controlled blasting",
-                    body: "<p>Implementation of modern drilling and blasting methodologies to improve fragmentation and reduce vibration impacts. Features include:</p><ul><li>Precision drilling patterns</li><li>Advanced explosive selection</li><li>Vibration monitoring systems</li><li>Blast optimization software</li></ul>",
+                    body: `
+                        <h3>Project Overview</h3>
+                        <p>Implementation of modern drilling and blasting methodologies to improve fragmentation, reduce vibration impacts, and enhance overall operational efficiency.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Precision drilling patterns using GPS technology</li>
+                            <li>Advanced explosive selection and loading techniques</li>
+                            <li>Real-time vibration monitoring systems</li>
+                            <li>Blast optimization software implementation</li>
+                            <li>Enhanced safety protocols and training</li>
+                        </ul>
+                        
+                        <h3>Expected Impact</h3>
+                        <p>Improved fragmentation leading to reduced downstream processing costs and minimized environmental impact through better control of blast effects.</p>
+                    `,
+                    startDate: "July 1, 2025",
+                    completionDate: "February 28, 2026",
+                    progress: 10,
                     imageUrl: "" // Add image URL here when available
                 },
                 5: {
                     title: "Operator Training Program",
                     subtitle: "Comprehensive skill development for equipment operators",
-                    body: "<p>A structured training program designed to enhance operator proficiency, safety awareness, and equipment knowledge. Program highlights:</p><ul><li>Simulator-based training modules</li><li>Safety protocol certification</li><li>Equipment-specific operational techniques</li><li>Performance benchmarking</li></ul>",
+                    body: `
+                        <h3>Program Overview</h3>
+                        <p>A structured training program designed to enhance operator proficiency, safety awareness, and equipment knowledge across all operational areas.</p>
+                        
+                        <h3>Program Highlights</h3>
+                        <ul>
+                            <li>Simulator-based training modules for heavy equipment</li>
+                            <li>Safety protocol certification programs</li>
+                            <li>Equipment-specific operational techniques</li>
+                            <li>Performance benchmarking and evaluation</li>
+                            <li>Advanced troubleshooting and maintenance training</li>
+                        </ul>
+                        
+                        <h3>Implementation Strategy</h3>
+                        <p>Phased rollout with initial focus on critical equipment operators, followed by comprehensive training for all operational staff.</p>
+                    `,
+                    startDate: "April 5, 2025",
+                    completionDate: "November 30, 2025",
+                    progress: 55,
                     imageUrl: "" // Add image URL here when available
                 },
                 6: {
                     title: "Crusher Competitor Study",
                     subtitle: "Market analysis of competing crushing technologies and methodologies",
-                    body: "<p>Comprehensive study of competitor crushing operations to identify best practices and technological advantages. Study areas include:</p><ul><li>Equipment efficiency comparisons</li><li>Maintenance cost analysis</li><li>Throughput benchmarks</li><li>Technology adoption trends</li></ul>",
+                    body: `
+                        <h3>Study Overview</h3>
+                        <p>Comprehensive study of competitor crushing operations to identify best practices, technological advantages, and operational efficiencies that can be implemented in our facilities.</p>
+                        
+                        <h3>Study Areas</h3>
+                        <ul>
+                            <li>Equipment efficiency and performance comparisons</li>
+                            <li>Maintenance cost and downtime analysis</li>
+                            <li>Throughput and capacity benchmarks</li>
+                            <li>Technology adoption trends in the industry</li>
+                            <li>Operational best practices and innovations</li>
+                        </ul>
+                        
+                        <h3>Expected Outcomes</h3>
+                        <p>Identification of improvement opportunities and development of a strategic roadmap for technology upgrades and operational enhancements.</p>
+                    `,
+                    startDate: "May 15, 2025",
+                    completionDate: "October 30, 2025",
+                    progress: 25,
                     imageUrl: "" // Add image URL here when available
                 },
                 7: {
                     title: "Surveyor Appointment",
                     subtitle: "Strategic hiring and deployment of surveying professionals",
-                    body: "<p>Initiative to strengthen our surveying capabilities through targeted recruitment and professional development. Key aspects:</p><ul><li>Specialized skill requirement analysis</li><li>Recruitment strategy development</li><li>Training program design</li><li>Technology integration planning</li></ul>",
+                    body: `
+                        <h3>Initiative Overview</h3>
+                        <p>Strategic initiative to strengthen our surveying capabilities through targeted recruitment, professional development, and technology integration.</p>
+                        
+                        <h3>Key Aspects</h3>
+                        <ul>
+                            <li>Specialized skill requirement analysis</li>
+                            <li>Competitive recruitment strategy development</li>
+                            <li>Comprehensive training program design</li>
+                            <li>Advanced technology integration planning</li>
+                            <li>Career development and retention strategies</li>
+                        </ul>
+                        
+                        <h3>Implementation Timeline</h3>
+                        <p>Phased approach with initial appointments in Q2 2025, followed by technology integration and training completion by Q1 2026.</p>
+                    `,
+                    startDate: "February 20, 2025",
+                    completionDate: "December 10, 2025",
+                    progress: 40,
                     imageUrl: "" // Add image URL here when available
                 },
                 8: {
                     title: "Plant Operational Time",
                     subtitle: "Maximizing plant availability and operational efficiency",
-                    body: "<p>Project focused on increasing plant operational time through improved maintenance scheduling and operational practices. Objectives:</p><ul><li>Reduce unplanned downtime by 30%</li><li>Implement predictive maintenance systems</li><li>Optimize shift scheduling</li><li>Enhance spare parts management</li></ul>",
+                    body: `
+                        <h3>Project Overview</h3>
+                        <p>Strategic project focused on increasing plant operational time through improved maintenance scheduling, operational practices, and technology implementation.</p>
+                        
+                        <h3>Primary Objectives</h3>
+                        <ul>
+                            <li>Reduce unplanned downtime by 30%</li>
+                            <li>Implement predictive maintenance systems</li>
+                            <li>Optimize shift scheduling and workforce management</li>
+                            <li>Enhance spare parts inventory management</li>
+                            <li>Improve overall equipment effectiveness (OEE)</li>
+                        </ul>
+                        
+                        <h3>Technology Integration</h3>
+                        <p>Implementation of IoT sensors, AI-powered predictive maintenance, and advanced analytics platforms to monitor equipment health and optimize maintenance schedules.</p>
+                    `,
+                    startDate: "March 1, 2025",
+                    completionDate: "January 15, 2026",
+                    progress: 35,
                     imageUrl: "" // Add image URL here when available
                 },
                 9: {
                     title: "Alternate Access Road Plan",
                     subtitle: "Development of secondary access routes for operational continuity",
-                    body: "<p>Strategic planning for alternate access roads to ensure uninterrupted operations during maintenance or emergencies. Plan includes:</p><ul><li>Route feasibility studies</li><li>Environmental impact assessments</li><li>Construction timeline and budget</li><li>Traffic management protocols</li></ul>",
+                    body: `
+                        <h3>Project Overview</h3>
+                        <p>Strategic planning for alternate access roads to ensure uninterrupted operations during maintenance, emergencies, or peak operational periods.</p>
+                        
+                        <h3>Plan Components</h3>
+                        <ul>
+                            <li>Comprehensive route feasibility studies</li>
+                            <li>Environmental impact assessments</li>
+                            <li>Detailed construction timeline and budget</li>
+                            <li>Traffic management and safety protocols</li>
+                            <li>Stakeholder engagement and approval processes</li>
+                        </ul>
+                        
+                        <h3>Expected Benefits</h3>
+                        <p>Enhanced operational resilience, reduced downtime during maintenance activities, and improved emergency response capabilities.</p>
+                    `,
+                    startDate: "August 1, 2025",
+                    completionDate: "May 30, 2026",
+                    progress: 5,
                     imageUrl: "" // Add image URL here when available
                 }
             };
@@ -355,6 +793,9 @@
                 title: "Project " + itemNumber,
                 subtitle: "Details for project " + itemNumber,
                 body: "<p>Detailed information for this project will be available soon.</p>",
+                startDate: "TBD",
+                completionDate: "TBD",
+                progress: 0,
                 imageUrl: ""
             };
         }
