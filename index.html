@@ -169,9 +169,9 @@
         }
         
         .dashboard-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
         
         .dashboard-item {
@@ -184,7 +184,10 @@
             position: relative;
             overflow: hidden;
             border-top: 5px solid var(--primary);
-            width: 100%;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         
         .dashboard-item::before {
@@ -528,6 +531,10 @@
             .image-modal-next {
                 right: 15px;
             }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -817,6 +824,10 @@
                     body: `
                         <h3>Project Overview</h3>
                         <p>This initiative focuses on developing comprehensive mining plans that maximize resource extraction while minimizing environmental impact and operational costs.</p>
+                        <div class="modal-image">
+                            <img src="https://via.placeholder.com/800x400?text=Mining+and+Bench+Planning" 
+                                 alt="Mining and Bench Planning">
+                        </div>
                     `
                 },
                 4: {
@@ -825,6 +836,10 @@
                     body: `
                         <h3>Project Overview</h3>
                         <p>Details for the drilling and blasting agenda will be updated soon.</p>
+                        <div class="modal-image">
+                            <img src="https://via.placeholder.com/800x400?text=Drilling+and+Blasting+Agenda" 
+                                 alt="Drilling and Blasting Agenda">
+                        </div>
                     `
                 },
                 5: {
@@ -833,6 +848,10 @@
                     body: `
                         <h3>Project Overview</h3>
                         <p>Details for the operator training program will be updated soon.</p>
+                        <div class="modal-image">
+                            <img src="https://via.placeholder.com/800x400?text=Operator+Training+Program" 
+                                 alt="Operator Training Program">
+                        </div>
                     `
                 },
                 6: {
@@ -841,6 +860,10 @@
                     body: `
                         <h3>Project Overview</h3>
                         <p>Details for the crusher competitor study will be updated soon.</p>
+                        <div class="modal-image">
+                            <img src="https://via.placeholder.com/800x400?text=Crusher+Competitor+Study" 
+                                 alt="Crusher Competitor Study">
+                        </div>
                     `
                 },
                 7: {
@@ -849,15 +872,20 @@
                     body: `
                         <h3>Project Overview</h3>
                         <p>Details for the surveyor appointment will be updated soon.</p>
+                        <div class="modal-image">
+                            <img src="https://via.placeholder.com/800x400?text=Surveyor+Appointment" 
+                                 alt="Surveyor Appointment">
+                        </div>
                     `
                 },
                 8: {
-                    title: "Plant Running Hours",
+                    title: "Plant Operational Time",
                     subtitle: "Maximizing plant availability and operational efficiency",
-                    <h3>Plant Running Hours</h3>
+                    body: `
+                        <h3>Plant Running Hours</h3>
                         <div class="modal-image">
-                            <img src="https://github.com/bimal-bp/work_vision_sgx/blob/main/Screenshot%202025-10-11%20150117.png" 
-                                 alt="Trial Results Analysis">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-11%20150117.png" 
+                                 alt="Plant Operational Time">
                         </div>
                     `
                 },
@@ -867,6 +895,10 @@
                     body: `
                         <h3>Project Overview</h3>
                         <p>Details for the alternate access road plan will be updated soon.</p>
+                        <div class="modal-image">
+                            <img src="https://via.placeholder.com/800x400?text=Alternate+Access+Road+Plan" 
+                                 alt="Alternate Access Road Plan">
+                        </div>
                     `
                 }
             };
