@@ -88,7 +88,9 @@
         }
         
         .project-head {
-            text-align: center;
+            position: absolute;
+            top: 20px;
+            right: 20px;
             font-size: 16px;
             color: var(--gray);
             background: white;
@@ -112,7 +114,7 @@
         .date {
             position: absolute;
             top: 20px;
-            right: 20px;
+            left: 20px;
             font-size: 14px;
             color: var(--gray);
             background: white;
@@ -342,36 +344,6 @@
             left: -15px;
         }
         
-        .progress-section {
-            margin-top: 30px;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background-color: #e9ecef;
-            border-radius: 4px;
-            margin: 15px 0;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--primary));
-            border-radius: 4px;
-            width: 0;
-            transition: width 1s ease;
-        }
-        
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: var(--gray);
-        }
-        
         @media (max-width: 768px) {
             .dashboard-grid {
                 grid-template-columns: 1fr;
@@ -384,6 +356,13 @@
             .modal-content {
                 padding: 25px;
                 width: 95%;
+            }
+            
+            .project-head {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-top: 20px;
             }
         }
     </style>
@@ -501,16 +480,6 @@
             <div class="modal-body" id="modalBody">
                 Detailed content will appear here.
             </div>
-            <div class="progress-section">
-                <h3>Project Progress</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <div class="progress-info">
-                    <span>Start Date: <span id="startDate">-</span></span>
-                    <span>Estimated Completion: <span id="completionDate">-</span></span>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -529,13 +498,6 @@
             document.getElementById('modalTitle').textContent = itemData.title;
             document.getElementById('modalSubtitle').textContent = itemData.subtitle;
             document.getElementById('modalBody').innerHTML = itemData.body;
-            document.getElementById('startDate').textContent = itemData.startDate;
-            document.getElementById('completionDate').textContent = itemData.completionDate;
-            
-            // Set progress bar
-            setTimeout(() => {
-                document.getElementById('progressFill').style.width = itemData.progress + '%';
-            }, 100);
             
             // Set image - in a real app, this would be an actual image URL
             const modalImage = document.getElementById('modalImage');
@@ -581,9 +543,6 @@
                         <h3>Expected Outcomes</h3>
                         <p>Increased plant efficiency, reduced operational costs, and enhanced safety protocols. The project aligns with our sustainability goals by minimizing energy consumption and environmental impact.</p>
                     `,
-                    startDate: "March 15, 2025",
-                    completionDate: "September 30, 2025",
-                    progress: 65,
                     imageUrl: "" // Add image URL here when available
                 },
                 2: {
@@ -605,9 +564,6 @@
                         <h3>Implementation Plan</h3>
                         <p>Phased implementation over 6 months with minimal disruption to ongoing operations. Includes comprehensive testing and operator training phases.</p>
                     `,
-                    startDate: "June 1, 2025",
-                    completionDate: "December 15, 2025",
-                    progress: 20,
                     imageUrl: "" // Add image URL here when available
                 },
                 3: {
@@ -629,9 +585,6 @@
                         <h3>Technology Integration</h3>
                         <p>Implementation of drone surveying and AI-powered planning tools to enhance accuracy and efficiency of mining operations.</p>
                     `,
-                    startDate: "January 10, 2025",
-                    completionDate: "August 20, 2025",
-                    progress: 45,
                     imageUrl: "" // Add image URL here when available
                 },
                 4: {
@@ -653,9 +606,6 @@
                         <h3>Expected Impact</h3>
                         <p>Improved fragmentation leading to reduced downstream processing costs and minimized environmental impact through better control of blast effects.</p>
                     `,
-                    startDate: "July 1, 2025",
-                    completionDate: "February 28, 2026",
-                    progress: 10,
                     imageUrl: "" // Add image URL here when available
                 },
                 5: {
@@ -677,9 +627,6 @@
                         <h3>Implementation Strategy</h3>
                         <p>Phased rollout with initial focus on critical equipment operators, followed by comprehensive training for all operational staff.</p>
                     `,
-                    startDate: "April 5, 2025",
-                    completionDate: "November 30, 2025",
-                    progress: 55,
                     imageUrl: "" // Add image URL here when available
                 },
                 6: {
@@ -701,9 +648,6 @@
                         <h3>Expected Outcomes</h3>
                         <p>Identification of improvement opportunities and development of a strategic roadmap for technology upgrades and operational enhancements.</p>
                     `,
-                    startDate: "May 15, 2025",
-                    completionDate: "October 30, 2025",
-                    progress: 25,
                     imageUrl: "" // Add image URL here when available
                 },
                 7: {
@@ -725,9 +669,6 @@
                         <h3>Implementation Timeline</h3>
                         <p>Phased approach with initial appointments in Q2 2025, followed by technology integration and training completion by Q1 2026.</p>
                     `,
-                    startDate: "February 20, 2025",
-                    completionDate: "December 10, 2025",
-                    progress: 40,
                     imageUrl: "" // Add image URL here when available
                 },
                 8: {
@@ -749,9 +690,6 @@
                         <h3>Technology Integration</h3>
                         <p>Implementation of IoT sensors, AI-powered predictive maintenance, and advanced analytics platforms to monitor equipment health and optimize maintenance schedules.</p>
                     `,
-                    startDate: "March 1, 2025",
-                    completionDate: "January 15, 2026",
-                    progress: 35,
                     imageUrl: "" // Add image URL here when available
                 },
                 9: {
@@ -773,9 +711,6 @@
                         <h3>Expected Benefits</h3>
                         <p>Enhanced operational resilience, reduced downtime during maintenance activities, and improved emergency response capabilities.</p>
                     `,
-                    startDate: "August 1, 2025",
-                    completionDate: "May 30, 2026",
-                    progress: 5,
                     imageUrl: "" // Add image URL here when available
                 }
             };
@@ -784,9 +719,6 @@
                 title: "Project " + itemNumber,
                 subtitle: "Details for project " + itemNumber,
                 body: "<p>Detailed information for this project will be available soon.</p>",
-                startDate: "TBD",
-                completionDate: "TBD",
-                progress: 0,
                 imageUrl: ""
             };
         }
