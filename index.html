@@ -20,9 +20,6 @@
             --light: #f8f9fa;
             --dark: #212529;
             --gray: #6c757d;
-            --success: #28a745;
-            --warning: #ffc107;
-            --danger: #dc3545;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
@@ -143,11 +140,6 @@
             z-index: 10;
         }
         
-        .project-head p {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        
         .project-head h3 {
             font-family: 'Montserrat', sans-serif;
             font-size: 18px;
@@ -169,26 +161,26 @@
         }
         
         .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
         }
         
         .dashboard-item {
             background-color: white;
             border-radius: 12px;
-            padding: 25px;
+            padding: 20px;
             box-shadow: var(--shadow);
             transition: var(--transition);
             cursor: pointer;
             position: relative;
             overflow: hidden;
             border-top: 5px solid var(--primary);
-            height: 150px; /* Increased height for larger buttons */
+            min-height: 120px;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            border: 1px solid #e0e0e0; /* Added border for defined rectangular shape */
         }
         
         .dashboard-item::before {
@@ -213,20 +205,32 @@
             transform: scaleX(1);
         }
         
+        .item-header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
         .item-number {
             font-family: 'Montserrat', sans-serif;
-            font-size: 16px; /* Slightly larger font for visibility */
+            font-size: 14px;
             font-weight: 600;
             color: var(--primary);
-            margin-bottom: 8px;
         }
         
         .dashboard-item h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 20px; /* Slightly larger font for title */
+            font-size: 18px;
             font-weight: 600;
             color: var(--dark);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.3;
         }
         
@@ -246,27 +250,11 @@
             border-top: 1px solid #eee;
         }
         
-        .item-status {
+        .item-timeline {
+            display: flex;
+            flex-direction: column;
             font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-        
-        .status-planning {
-            background-color: rgba(255, 193, 7, 0.15);
-            color: #b38f00;
-        }
-        
-        .status-inprogress {
-            background-color: rgba(0, 180, 216, 0.15);
-            color: var(--accent);
-        }
-        
-        .item-arrow {
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 18px;
+            color: var(--gray);
         }
         
         .modal {
@@ -533,12 +521,14 @@
                 right: 15px;
             }
             
-            .dashboard-grid {
-                grid-template-columns: 1fr;
+            .item-row {
+                flex-direction: column;
+                align-items: flex-start;
             }
             
-            .dashboard-item {
-                height: 160px; /* Slightly taller for mobile */
+            .item-meta {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -556,75 +546,156 @@
                     <div class="flowing-line" style="top: 80%; animation-delay: 6s;"></div>
                 </div>
                 <h1>SGX Vision Financial Year 2025-26</h1>
-                <p>Strategic Initiatives & Operational Excellence</p>
+                <p>Strategic Initiatives & 230 TPH Operational</p>
             </div>
+            
             <div class="project-head">
-                <p>Project Head</p>
-                <h3>Mr.N.Arun Kumar</h3>
+                <h3>Mr. N. Arun Kumar</h3>
             </div>
         </header>
         
         <main class="dashboard-grid">
             <div class="dashboard-item" onclick="openModal(1)">
-                <div class="item-number">01</div>
-                <h2>METSO Plant Optimization</h2>
-                <div class="item-meta">
+                <div class="item-header">
+                    <div class="item-row">
+                        <div class="item-number">Sr No: 01</div>
+                        <h2>METSO Plant Setting to achieve 230 TPH including Railway Ballast</h2>
+                    </div>
+                    <div class="item-description">Roles & Responsibility: Internal Trial for 230 TPH including Railway Ballast Production</div>
+                    <div class="item-meta">
+                        <div class="item-timeline">
+                            <div>HO Timeline: 10/10/2025</div>
+                            <div>Individual Timeline: 30/10/2025</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(2)">
-                <div class="item-number">02</div>
-                <h2>VSI to Rivo Conversion</h2>
-                <div class="item-meta">
+                <div class="item-header">
+                    <div class="item-row">
+                        <div class="item-number">Sr No: 02</div>
+                        <h2>Conversion of 100% VSI to Rivo Product</h2>
+                    </div>
+                    <div class="item-description">Roles & Responsibility: 100% Conversion of VSI to RIVO Sand</div>
+                    <div class="item-meta">
+                        <div class="item-timeline">
+                            <div>HO Timeline: 30/10/2025</div>
+                            <div>Individual Timeline: 15/11/2025</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(3)">
-                <div class="item-number">03</div>
-                <h2>Mining & Bench Planning</h2>
-                <div class="item-meta">
+                <div class="item-header">
+                    <div class="item-row">
+                        <div class="item-number">Sr No: 03</div>
+                        <h2>Mining Operation Drilling & Blasting Planning</h2>
+                    </div>
+                    <div class="item-description">Roles & Responsibility: Strategic planning for 3 Pits and 4 Benches</div>
+                    <div class="item-meta">
+                        <div class="item-timeline">
+                            <div>HO Timeline: 12/10/2025</div>
+                            <div>Individual Timeline: 22/10/2025</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(4)">
-                <div class="item-number">04</div>
-                <h2>Drilling & Blasting Agenda</h2>
-                <div class="item-meta">
+                <div class="item-header">
+                    <div class="item-row">
+                        <div class="item-number">Sr No: 04</div>
+                        <h2>Drilling & Blasting Optimization</h2>
+                    </div>
+                    <div class="item-description">Roles & Responsibility: Advanced techniques for precision drilling and controlled blasting</div>
+                    <div class="item-meta">
+                        <div class="item-timeline">
+                            <div>HO Timeline: 25/01/2026</div>
+                            <div>Individual Timeline: TBD</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(5)">
-                <div class="item-number">05</div>
-                <h2>Operator Training Program</h2>
-                <div class="item-meta">
+                <div class="item-header">
+                    <div class="item-row">
+                        <div class="item-number">Sr No: 05</div>
+                        <h2>Operator Training for Breaking Pattern</h2>
+                    </div>
+                    <div class="item-description">Roles & Responsibility: Comprehensive skill development for equipment operators</div>
+                    <div class="item-meta">
+                        <div class="item-timeline">
+                            <div>HO Timeline: 05/02/2026</div>
+                            <div>Individual Timeline: TBD</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(6)">
-                <div class="item-number">06</div>
-                <h2>Crusher Competitor Study</h2>
-                <div class="item-meta">
+                <div class="item-header">
+                    <div class="item-row">
+                        <div class="item-number">Sr No: 06</div>
+                        <h2>Crusher Competitor Study</h2>
+                    </div>
+                    <div class="item-description">Roles & Responsibility: Market analysis of competing crushing technologies</div>
+                    <div class="item-meta">
+                        <div class="item-timeline">
+                            <div>HO Timeline: 15/02/2026</div>
+                            <div>Individual Timeline: TBD</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(7)">
-                <div class="item-number">07</div>
-                <h2>Surveyor Appointment</h2>
-                <div class="item-meta">
+                <div class="item-header">
+                    <div class="item-row">
+                        <div class="item-number">Sr No: 07</div>
+                        <h2>Surveyor Appointment</h2>
+                    </div>
+                    <div class="item-description">Roles & Responsibility: Strategic hiring of surveying professionals</div>
+                    <div class="item-meta">
+                        <div class="item-timeline">
+                            <div>HO Timeline: 28/02/2026</div>
+                            <div>Individual Timeline: TBD</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(8)">
-                <div class="item-number">08</div>
-                <h2>Plant Operational Time</h2>
-                <div class="item-meta">
+                <div class="item-header">
+                    <div class="item-row">
+                        <div class="item-number">Sr No: 08</div>
+                        <h2>Plant Operational Time</h2>
+                    </div>
+                    <div class="item-description">Roles & Responsibility: Maximizing plant availability and efficiency</div>
+                    <div class="item-meta">
+                        <div class="item-timeline">
+                            <div>HO Timeline: 10/03/2026</div>
+                            <div>Individual Timeline: TBD</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <div class="dashboard-item" onclick="openModal(9)">
-                <div class="item-number">09</div>
-                <h2>Alternate Access Road Plan</h2>
-                <div class="item-meta">
+                <div class="item-header">
+                    <div class="item-row">
+                        <div class="item-number">Sr No: 09</div>
+                        <h2>Alternate Access Road Plan</h2>
+                    </div>
+                    <div class="item-description">Roles & Responsibility: Development of secondary access routes</div>
+                    <div class="item-meta">
+                        <div class="item-timeline">
+                            <div>HO Timeline: 20/03/2026</div>
+                            <div>Individual Timeline: TBD</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -779,20 +850,17 @@
                         
                         <h3>Trial Results</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-11%20124309.png" 
-                                 alt="Trial Results Analysis">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-11%20124309.png" alt="Trial Results">
                         </div>
                         
                         <h3>New Plan</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-10%20174102.png" 
-                                 alt="Optimization Strategy">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-10%20174102.png" alt="New Plan">
                         </div>
 
                         <h3>New Conveyor Quotation</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/CONVEROYOR%20QUATION.png" 
-                                 alt="Conveyor Quotation">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/CONVEROYOR%20QUATION.png" alt="Conveyor Quotation">
                         </div>
                         
                         <h3>Project Timeline</h3>
@@ -816,18 +884,54 @@
                 },
                 3: {
                     title: "Mining & Bench Planning",
-                    subtitle: "Strategic planning for optimized mining operations and bench design",
+                    subtitle: "Strategic planning for 3 Pits and 4 Benches",
                     body: `
-                        <h3>Project Overview</h3>
-                        <p>This initiative focuses on developing comprehensive mining plans that maximize resource extraction while minimizing environmental impact and operational costs.</p>
+                        <h3>Pit - 1</h3>
+                        <p>Temporary not used only uses when we need.</p>
+                
+                        <h3>Pit 2</h3>
+                        <ul>
+                            <li>Area: 45m*65m</li>
+                            <li>Compressor Planning: 7</li>
+                        </ul>
                         <div class="modal-image">
-                            <img src="https://via.placeholder.com/800x400?text=Mining+and+Bench+Planning" 
-                                 alt="Mining and Bench Planning">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/pit%20-%202.jpg" alt="Pit 2">
                         </div>
+                
+                        <h3>Pit 3</h3>
+                        <ul>
+                            <li>Bench Area: 45m * 34m</li>
+                            <li>Compressor Planning: 10</li>
+                        </ul>
+                        <h3>Pit 3 - Bench 1</h3>
+                        <div class="modal-image">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/pit%20-%203%20bench%20-1.jpg" alt="Pit 3 Bench 1">
+                        </div>
+                        <h3>Pit 3 - Bench 2</h3>
+                        <div class="modal-image">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Pit%203%20-%20%20Bench%20-2%20.jpg" alt="Pit 3 Bench 2">
+                        </div>
+                
+                        <h3>Responsibility & Roles</h3>
+                        <ul>
+                            <h4>Mr Siva Prasad</h4>
+                            <li>Mine Development Planning</li>
+                            <li>Compressor Planning</li>
+                            <li>Blasting pattern</li>
+                            <h4>Mr AllaKrishna & Mr Bijay</h4>
+                            <li>Sheet cleaning for minimum 17 Compressor placement</li>
+                        </ul>
+
+                        <h3>Study After Blasting</h3>
+                        <ul>
+                            <li>Blasting Pattern</li>
+                            <li>No of compressor used Bench wise</li>
+                            <li>No of feetage for Benches</li>
+                        </ul>
                     `
                 },
                 4: {
-                    title: "Drilling & Blasting Agenda",
+                    title: "Drilling & Blasting Optimization",
                     subtitle: "Advanced techniques for precision drilling and controlled blasting",
                     body: `
                         <h3>Project Overview</h3>
@@ -842,23 +946,20 @@
                     title: "Operator Training Program",
                     subtitle: "Comprehensive skill development for equipment operators",
                     body: `
-                        <h3>Project Overview</h3>
-                        <p>Details for the operator training program will be updated soon.</p>
-                        <div class="modal-image">
-                            <img src="https://via.placeholder.com/800x400?text=Operator+Training+Program" 
-                                 alt="Operator Training Program">
-                        </div>
+                        <h3>Proper Communication of Supervisors</h3>
+                        <ul>
+                            <li>Contacting for Consultancy from Hyderabad</li>
+                            <li>Contacting for Consultancy from Local Also</li>
+                        </ul>
                     `
                 },
                 6: {
                     title: "Crusher Competitor Study",
                     subtitle: "Market analysis of competing crushing technologies and methodologies",
                     body: `
-                        <h3>Project Overview</h3>
-                        <p>Details for the crusher competitor study will be updated soon.</p>
+                        <h3>Trial Results</h3>
                         <div class="modal-image">
-                            <img src="https://via.placeholder.com/800x400?text=Crusher+Competitor+Study" 
-                                 alt="Crusher Competitor Study">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/CUSTOMER%20LIST.png" alt="Trial Results">
                         </div>
                     `
                 },
@@ -866,12 +967,11 @@
                     title: "Surveyor Appointment",
                     subtitle: "Strategic hiring and deployment of surveying professionals",
                     body: `
-                        <h3>Project Overview</h3>
-                        <p>Details for the surveyor appointment will be updated soon.</p>
-                        <div class="modal-image">
-                            <img src="https://via.placeholder.com/800x400?text=Surveyor+Appointment" 
-                                 alt="Surveyor Appointment">
-                        </div>
+                        <h3>Surveyor Appointment</h3>
+                        <ul>
+                            <li>Contacting for Consultancy from Hyderabad</li>
+                            <li>Contacting for Consultancy from Local Also</li>
+                        </ul>
                     `
                 },
                 8: {
@@ -880,8 +980,7 @@
                     body: `
                         <h3>Plant Running Hours</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-11%20150117.png" 
-                                 alt="Plant Operational Time">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-11%20150117.png" alt="Plant Running Hours">
                         </div>
                     `
                 },
@@ -889,12 +988,11 @@
                     title: "Alternate Access Road Plan",
                     subtitle: "Development of secondary access routes for operational continuity",
                     body: `
-                        <h3>Project Overview</h3>
-                        <p>Details for the alternate access road plan will be updated soon.</p>
-                        <div class="modal-image">
-                            <img src="https://via.placeholder.com/800x400?text=Alternate+Access+Road+Plan" 
-                                 alt="Alternate Access Road Plan">
-                        </div>
+                        <h3>Alternate Access Road Plan</h3>
+                        <ul>
+                            <li>Had a meeting with Locals for support</li>
+                            <li>2nd road accessing</li>
+                        </ul>
                     `
                 }
             };
