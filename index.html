@@ -171,20 +171,21 @@
             border-bottom: 2px solid var(--primary-light);
         }
         
+        /* Modern Table Styling with Rectangular Button Appearance */
         .roles-table {
             width: 100%;
-            border-collapse: collapse;
-            background-color: white;
+            border-collapse: separate;
+            border-spacing: 0 12px;
+            background-color: transparent;
             border-radius: 12px;
-            box-shadow: var(--shadow);
             overflow: hidden;
             margin-top: 15px;
         }
         
         .roles-table th, .roles-table td {
-            padding: 18px;
+            padding: 20px;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border: none;
         }
         
         .roles-table th {
@@ -194,10 +195,7 @@
             font-weight: 600;
             text-align: center;
             font-size: 16px;
-        }
-        
-        .roles-table td {
-            border: 1px solid #e0e0e0;
+            border: none;
         }
         
         .roles-table td:nth-child(1),
@@ -206,15 +204,52 @@
             text-align: center;
         }
         
+        .roles-table td:nth-child(2) {
+            font-weight: bold;
+        }
+        
         .roles-table tr {
             transition: var(--transition);
             cursor: pointer;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border: 2px solid #e8eff5;
+            display: table;
+            width: 100%;
+            table-layout: fixed;
         }
         
         .roles-table tr:hover {
-            background-color: #f0f5ff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            background-color: #f8fbff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent);
+        }
+        
+        .roles-table thead tr {
+            border: none;
+            box-shadow: none;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .roles-table thead tr:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: transparent;
+            background: var(--primary);
+        }
+        
+        /* Ensure proper border radius for table cells */
+        .roles-table td:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+        
+        .roles-table td:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
         }
         
         .modal {
@@ -507,7 +542,7 @@
                 <p>Strategic Initiatives & 230 TPH Operational</p>
             </div>
             
-    
+         
         </header>
         
         <main>
@@ -548,13 +583,13 @@
                     </tr>
                     <tr onclick="openModal(5)">
                         <td>5</td>
-                        <td>Operator’s training required on breaking pattern to avoid unnecessary size reduction and cost increase.</td>
+                        <td>Operator's training required on breaking pattern to avoid unnecessary size reduction and cost increase.</td>
                         <td>12/10/2025</td>
                         <td>TBD</td>
                     </tr>
                     <tr onclick="openModal(6)">
                         <td>6</td>
-                        <td>Crusher Competitor’s Study.</td>
+                        <td>Crusher Competitor's Study.</td>
                         <td>15/02/2026</td>
                         <td>TBD</td>
                     </tr>
@@ -730,7 +765,7 @@
                         
                         <h3>Trial Results</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Traial%20-%20test.png" alt="Trial Results">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-11%20124309.png" alt="Trial Results">
                         </div>
                         
                         <h3>New Plan</h3>
