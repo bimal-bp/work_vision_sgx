@@ -171,7 +171,6 @@
             border-bottom: 2px solid var(--primary-light);
         }
         
-        /* Modern Table Styling with Rectangular Button Appearance */
         .roles-table {
             width: 100%;
             border-collapse: separate;
@@ -241,7 +240,6 @@
             background: var(--primary);
         }
         
-        /* Ensure proper border radius for table cells */
         .roles-table td:first-child {
             border-top-left-radius: 8px;
             border-bottom-left-radius: 8px;
@@ -252,7 +250,6 @@
             border-bottom-right-radius: 8px;
         }
         
-        /* Target Breakdown Styles */
         .monthly-breakdown {
             margin-top: 40px;
             background: white;
@@ -575,7 +572,6 @@
             background: rgba(0, 0, 0, 0.5);
         }
         
-        /* Month buttons for modal */
         .month-buttons {
             display: flex;
             justify-content: center;
@@ -604,6 +600,24 @@
         
         .month-button.active {
             background: var(--secondary);
+        }
+        
+        .basic-revenue-section {
+            margin-top: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .section-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: var(--primary);
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-bottom: 1px solid #dee2e6;
+            margin: 0;
         }
         
         @media (max-width: 768px) {
@@ -749,7 +763,6 @@
                 </tbody>
             </table>
             
-            <!-- Target Breakdown Section -->
             <div id="target-breakdown" class="monthly-breakdown">
                 <div class="month-tabs">
                     <div class="month-tab active" onclick="switchMonth('target-october', this)">October</div>
@@ -757,17 +770,14 @@
                     <div class="month-tab" onclick="switchMonth('target-december', this)">December</div>
                 </div>
                 <div id="target-october" class="month-content active">                            
-                    <!-- October Image -->
                     <img src="https://raw.githubusercontent.com/bimal-bp/90_Days_Work_Vision/main/MINE-OCT.jpeg" alt="October Production Plan" class="month-image" onclick="zoomImage(this.src)">
                     <p class="image-caption">October Production Plan</p>
                 </div>
                 <div id="target-november" class="month-content">                  
-                    <!-- November Image -->
                     <img src="https://raw.githubusercontent.com/bimal-bp/90_Days_Work_Vision/main/MINE-NOV.jpeg" alt="November Production Plan" class="month-image" onclick="zoomImage(this.src)">
                     <p class="image-caption">November Production Plan</p>
                 </div>
                 <div id="target-december" class="month-content">
-                    <!-- December Image -->
                     <img src="https://raw.githubusercontent.com/bimal-bp/90_Days_Work_Vision/main/MINE-DEC.jpeg" alt="December Production Plan" class="month-image" onclick="zoomImage(this.src)">
                     <p class="image-caption">December Production Plan</p>
                 </div>
@@ -801,12 +811,10 @@
     </div>
 
     <script>
-        // Set current date
         const currentDate = new Date();
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('current-date').textContent = currentDate.toLocaleDateString('en-US', options);
         
-        // Create flowing lines for the title box
         function createFlowingLines() {
             const flowingLines = document.querySelector('.flowing-lines');
             for (let i = 0; i < 8; i++) {
@@ -821,27 +829,22 @@
         
         createFlowingLines();
         
-        // Monthly breakdown functionality
         function switchMonth(monthId, element) {
-            // Hide all month contents
             const monthContents = document.querySelectorAll('.month-content');
             monthContents.forEach(content => {
                 content.classList.remove('active');
             });
             
-            // Remove active class from all tabs
             const monthTabs = document.querySelectorAll('.month-tab');
             monthTabs.forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // Show selected month content and activate tab
             document.getElementById(monthId).classList.add('active');
             element.classList.add('active');
         }
         
         function toggleBreakdown(event, breakdownId) {
-            // This function can be expanded to show additional breakdowns
             alert('Bench breakdown feature will be implemented here');
         }
         
@@ -855,7 +858,6 @@
             document.getElementById('imageModal').style.display = 'flex';
         }
         
-        // Modal functionality
         const modal = document.getElementById('detailModal');
         const imageModal = document.getElementById('imageModal');
         let currentImages = [];
@@ -868,7 +870,6 @@
             document.getElementById('modalSubtitle').textContent = itemData.subtitle;
             document.getElementById('modalBody').innerHTML = itemData.body;
             
-            // Add click handlers to images in the modal
             setTimeout(() => {
                 const modalImages = document.querySelectorAll('.modal-image img');
                 modalImages.forEach((img, index) => {
@@ -962,7 +963,27 @@
                             <li>     Buttom : 5.5 MM </li>
                         </ul>
                         
-                        <h3>Basic Revenue</h3>
+                        <h3>Trial Results</h3>
+                        <div class="modal-image">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TRIAL_NEW-.png">
+                        </div>
+                        
+                        <h3>New Plan</h3>
+                        <div class="modal-image">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-10%20174102.png">
+                        </div>
+
+                        <h3>New Conveyor Quotation</h3>
+                        <div class="modal-image">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/CONVEROYOR%20QUATION.png">
+                        </div>
+                        
+                        <h3>Project Timeline</h3>
+                        <ul>
+                            <li>Expected Work Completion Date: 25/10/2025</li>
+                            <li>It will help to increase 20 MM Production</li>
+                        </ul>
+                        
                         <div class="month-buttons">
                             <button class="month-button active" onclick="switchMonthInModal('october', this)">October</button>
                             <button class="month-button" onclick="switchMonthInModal('november', this)">November</button>
@@ -970,28 +991,23 @@
                         </div>
                         
                         <div id="modal-october" class="modal-month-content">
-                            <h3>Trial Results</h3>
+                            <h3>October Basic Revenue</h3>
                             <div class="modal-image">
-                                 <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TRIAL_NEW-.png">
-                            </div>
-                            
-                            <h3>New Plan</h3>
-                            <div class="modal-image">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-10%20174102.png">
-                            </div>
-
-                            <h3>New Conveyor Quotation</h3>
-                            <div class="modal-image">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/CONVEROYOR%20QUATION.png">
+                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-%20OCT.png">
                             </div>
                         </div>
                         
                         <div id="modal-november" class="modal-month-content" style="display: none;">
                             <h3>November Implementation Plan</h3>
                             <div class="modal-image">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/90_Days_Work_Vision/main/MINE-NOV.jpeg">
+                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-%20OCT.png">
                             </div>
                             <p>November focuses on full implementation of the METSO plant optimization with monitoring of production metrics.</p>
+                            
+                            <h3>November Basic Revenue</h3>
+                            <div class="modal-image">
+                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-%20OCT.png">
+                            </div>
                         </div>
                         
                         <div id="modal-december" class="modal-month-content" style="display: none;">
@@ -1000,13 +1016,12 @@
                                 <img src="https://raw.githubusercontent.com/bimal-bp/90_Days_Work_Vision/main/MINE-DEC.jpeg">
                             </div>
                             <p>December will focus on fine-tuning the system and addressing any operational challenges identified in November.</p>
+                            
+                            <h3>December Basic Revenue</h3>
+                            <div class="modal-image">
+                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-%20OCT.png">
+                            </div>
                         </div>
-                        
-                        <h3>Project Timeline</h3>
-                        <ul>
-                            <li>Expected Work Completion Date: 25/10/2025</li>
-                            <li>It will help to increase 20 MM Production</li>
-                        </ul>
                     `
                 },
                 2: {
@@ -1096,7 +1111,6 @@
                         <h3> 17  Compressor Planning </h3>
                         <h3> 1000 Holes Target </h3>
                         <h3> Consultancy  : Contacting for the Consultancy </h3>
-                       
                     `
                 },
                 5: {
@@ -1105,8 +1119,6 @@
                     body: `
                         <li>After Blasting our team will mark color to the Big boulders then operator will break the same boulders</li>
                         <li> In this process to control the machine breaking hours <li>
-                        
-                        
                     `
                 },
                 6: {
@@ -1164,24 +1176,19 @@
             };
         }
         
-        // Function to switch months in modal
         function switchMonthInModal(month, element) {
-            // Remove active class from all month buttons
             const monthButtons = document.querySelectorAll('.month-button');
             monthButtons.forEach(button => {
                 button.classList.remove('active');
             });
             
-            // Add active class to clicked button
             element.classList.add('active');
             
-            // Hide all month contents
             const monthContents = document.querySelectorAll('.modal-month-content');
             monthContents.forEach(content => {
                 content.style.display = 'none';
             });
             
-            // Show selected month content
             document.getElementById('modal-' + month).style.display = 'block';
         }
     </script>
