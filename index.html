@@ -625,6 +625,14 @@
             margin: 0;
         }
         
+        .modal-month-content {
+            display: none;
+        }
+        
+        .modal-month-content.active {
+            display: block;
+        }
+        
         @media (max-width: 768px) {
             .title-box h1 {
                 font-size: 26px;
@@ -901,9 +909,11 @@
         });
         
         // Fixed function to switch months in modal
-        function switchMonthInModal(month, element, section = 'basic') {
-            // Remove active class from all month buttons in the same container
+        function switchMonthInModal(month, element, section) {
+            // Find the parent container of the clicked button
             const buttonContainer = element.parentElement;
+            
+            // Remove active class from all month buttons in the same container
             const monthButtons = buttonContainer.querySelectorAll('.month-button');
             monthButtons.forEach(button => {
                 button.classList.remove('active');
@@ -922,8 +932,8 @@
             });
             
             // Show selected month content
-            const monthContentId = section === 'total' ? `modal-total-${month}` : `modal-${month}`;
-            const selectedMonthContent = document.getElementById(monthContentId);
+            const monthContentId = `${section}-${month}`;
+            const selectedMonthContent = contentContainer.querySelector(`#${monthContentId}`);
             if (selectedMonthContent) {
                 selectedMonthContent.style.display = 'block';
             }
@@ -988,27 +998,27 @@
                         
                         <h3>Dispatch Details</h3>
                         <div class="month-buttons">
-                            <button class="month-button active" onclick="switchMonthInModal('october', this, 'basic')">October</button>
-                            <button class="month-button" onclick="switchMonthInModal('november', this, 'basic')">November</button>
-                            <button class="month-button" onclick="switchMonthInModal('december', this, 'basic')">December</button>
+                            <button class="month-button active" onclick="switchMonthInModal('october', this, 'dispatch')">October</button>
+                            <button class="month-button" onclick="switchMonthInModal('november', this, 'dispatch')">November</button>
+                            <button class="month-button" onclick="switchMonthInModal('december', this, 'dispatch')">December</button>
                         </div>
                         
                         <div class="month-content-container">
-                            <div id="modal-october" class="modal-month-content">
+                            <div id="dispatch-october" class="modal-month-content" style="display: block;">
                                 <h3>October Dispatch</h3>
                                 <div class="modal-image">
                                     <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/DISPATCH%20-%20OCT.png" alt="October Dispatch">
                                 </div>
                             </div>
                             
-                            <div id="modal-november" class="modal-month-content" style="display: none;">
+                            <div id="dispatch-november" class="modal-month-content" style="display: none;">
                                 <h3>November Dispatch</h3>
                                 <div class="modal-image">
                                     <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/DISPATCH%20-%20NOV.png" alt="November Dispatch">
                                 </div>
                             </div>
                             
-                            <div id="modal-december" class="modal-month-content" style="display: none;">
+                            <div id="dispatch-december" class="modal-month-content" style="display: none;">
                                 <h3>December Dispatch</h3>
                                 <div class="modal-image">
                                     <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/DISPATCH%20-%20DEC.png" alt="December Dispatch">
@@ -1024,21 +1034,21 @@
                         </div>
                         
                         <div class="month-content-container">
-                            <div id="modal-october" class="modal-month-content">
+                            <div id="basic-october" class="modal-month-content" style="display: block;">
                                 <h3>October Basic Revenue</h3>
                                 <div class="modal-image">
                                     <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-%20OCT.png" alt="October Basic Revenue">
                                 </div>
                             </div>
                             
-                            <div id="modal-november" class="modal-month-content" style="display: none;">
+                            <div id="basic-november" class="modal-month-content" style="display: none;">
                                 <h3>November Basic Revenue</h3>
                                 <div class="modal-image">
                                     <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-NOV.png" alt="November Basic Revenue">
                                 </div>
                             </div>
                             
-                            <div id="modal-december" class="modal-month-content" style="display: none;">
+                            <div id="basic-december" class="modal-month-content" style="display: none;">
                                 <h3>December Basic Revenue</h3>
                                 <div class="modal-image">
                                     <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-DEC%2025.png" alt="December Basic Revenue">
@@ -1054,21 +1064,21 @@
                         </div>
                         
                         <div class="month-content-container">
-                            <div id="modal-total-october" class="modal-month-content">
+                            <div id="total-october" class="modal-month-content" style="display: block;">
                                 <h3>October Total Revenue</h3>
                                 <div class="modal-image">
                                     <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20OCT.png" alt="October Total Revenue">
                                 </div>
                             </div>
                             
-                            <div id="modal-total-november" class="modal-month-content" style="display: none;">
+                            <div id="total-november" class="modal-month-content" style="display: none;">
                                 <h3>November Total Revenue</h3>
                                 <div class="modal-image">
                                     <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20NOV.png" alt="November Total Revenue">
                                 </div>
                             </div>
                             
-                            <div id="modal-total-december" class="modal-month-content" style="display: none;">
+                            <div id="total-december" class="modal-month-content" style="display: none;">
                                 <h3>December Total Revenue</h3>
                                 <div class="modal-image">
                                     <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20DEC.png" alt="December Total Revenue">
