@@ -768,28 +768,29 @@
                 </tbody>
             </table>
             
-           
-    <div id="detailModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle">Title</h2>
-                <p class="modal-subtitle" id="modalSubtitle">Subtitle</p>
+            <div id="detailModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="modalTitle">Title</h2>
+                        <p class="modal-subtitle" id="modalSubtitle">Subtitle</p>
+                    </div>
+                    <div class="modal-body" id="modalBody">
+                        Detailed content will appear here.
+                    </div>
+                </div>
             </div>
-            <div class="modal-body" id="modalBody">
-                Detailed content will appear here.
-            </div>
-        </div>
-    </div>
 
-    <div id="imageModal" class="image-modal">
-        <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
-        <span class="image-modal-nav image-modal-prev" onclick="changeImage(-1)">&#10094;</span>
-        <span class="image-modal-nav image-modal-next" onclick="changeImage(1)">&#10095;</span>
-        <div class="image-modal-content">
-            <img id="fullImage" src="" alt="Full size image">
-            <div class="image-modal-caption" id="imageCaption"></div>
-        </div>
+            <div id="imageModal" class="image-modal">
+                <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+                <span class="image-modal-nav image-modal-prev" onclick="changeImage(-1)">&#10094;</span>
+                <span class="image-modal-nav image-modal-next" onclick="changeImage(1)">&#10095;</span>
+                <div class="image-modal-content">
+                    <img id="fullImage" src="" alt="Full size image">
+                    <div class="image-modal-caption" id="imageCaption"></div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script>
@@ -812,40 +813,6 @@
         }
         
         createFlowingLines();
-        
-        // Monthly breakdown functionality
-        function switchMonth(monthId, element) {
-            // Hide all month contents
-            const monthContents = document.querySelectorAll('.month-content');
-            monthContents.forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Remove active class from all tabs
-            const monthTabs = document.querySelectorAll('.month-tab');
-            monthTabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Show selected month content and activate tab
-            document.getElementById(monthId).classList.add('active');
-            element.classList.add('active');
-        }
-        
-        function toggleBreakdown(event, breakdownId) {
-            // This function can be expanded to show additional breakdowns
-            alert('Bench breakdown feature will be implemented here');
-        }
-        
-        function zoomImage(src) {
-            const fullImage = document.getElementById('fullImage');
-            const imageCaption = document.getElementById('imageCaption');
-            
-            fullImage.src = src;
-            imageCaption.textContent = document.querySelector('.month-content.active .image-caption').textContent;
-            
-            document.getElementById('imageModal').style.display = 'flex';
-        }
         
         // Modal functionality
         const modal = document.getElementById('detailModal');
@@ -936,6 +903,35 @@
             }
         });
         
+        // Fixed function to switch months in modal
+        function switchMonthInModal(month, element, section = 'basic') {
+            // Remove active class from all month buttons in the same container
+            const buttonContainer = element.parentElement;
+            const monthButtons = buttonContainer.querySelectorAll('.month-button');
+            monthButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            element.classList.add('active');
+            
+            // Find the month content container (next element after the button container)
+            const contentContainer = buttonContainer.nextElementSibling;
+            
+            // Hide all month contents in the same container
+            const monthContents = contentContainer.querySelectorAll('.modal-month-content');
+            monthContents.forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Show selected month content
+            const monthContentId = section === 'total' ? `modal-total-${month}` : `modal-${month}`;
+            const selectedMonthContent = document.getElementById(monthContentId);
+            if (selectedMonthContent) {
+                selectedMonthContent.style.display = 'block';
+            }
+        }
+        
         function getItemData(itemNumber) {
             const data = {
                 1: {
@@ -944,29 +940,29 @@
                     body: `
                         <h3>Screen Details</h3>
                         <ul>
-                            <b>Screen 1 at CONE<b> 
+                            <li><b>Screen 1 at CONE</b></li>
                             <li>Screen Top: 60 mm - 6 nos</li>
                             <li>Screen Bottom: 42 mm - 4 nos</li>
-                            <li> --------------------------------------</li>
-                            <li><b>Screen 2 at VSI <b> </li>
-                            <li> Screen TOP : 22  MM </li>
-                            <li>     Middle : 12  MM </li>
-                            <li>     Buttom : 5.5 MM </li>
+                            <li>--------------------------------------</li>
+                            <li><b>Screen 2 at VSI</b></li>
+                            <li>Screen TOP: 22 MM</li>
+                            <li>Middle: 12 MM</li>
+                            <li>Bottom: 5.5 MM</li>
                         </ul>
                         
                         <h3>Trial Results</h3>
                         <div class="modal-image">
-                             <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TRIAL_NEW-.png">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TRIAL_NEW-.png" alt="Trial Results">
                         </div>
                         
                         <h3>New Plan</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-10%20174102.png">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Screenshot%202025-10-10%20174102.png" alt="New Plan">
                         </div>
 
                         <h3>New Conveyor Quotation</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/CONVEROYOR%20QUATION.png">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/CONVEROYOR%20QUATION.png" alt="Conveyor Quotation">
                         </div>
                         
                         <h3>Project Timeline</h3>
@@ -974,68 +970,72 @@
                             <li>Expected Work Completion Date: 25/10/2025</li>
                             <li>It will help to increase 20 MM Production</li>
                         </ul>
-                        <h3> 6 Months Production Planning</h3>
+                        <h3>6 Months Production Planning</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/6%20months%20production.png">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/6%20months%20production.png" alt="6 Months Production Planning">
                         </div>
                         <h3>6 Months Basic Revenue</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/6%20month%20revenue.png">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/6%20month%20revenue.png" alt="6 Months Basic Revenue">
                         </div>
                         
                         <h3>Basic Revenue</h3>
                         <div class="month-buttons">
-                            <button class="month-button active" onclick="switchMonthInModal('october', this)">October</button>
-                            <button class="month-button" onclick="switchMonthInModal('november', this)">November</button>
-                            <button class="month-button" onclick="switchMonthInModal('december', this)">December</button>
+                            <button class="month-button active" onclick="switchMonthInModal('october', this, 'basic')">October</button>
+                            <button class="month-button" onclick="switchMonthInModal('november', this, 'basic')">November</button>
+                            <button class="month-button" onclick="switchMonthInModal('december', this, 'basic')">December</button>
                         </div>
                         
-                        <div id="modal-october" class="modal-month-content">
-                            <h3>October Basic Revenue</h3>
-                            <div class="modal-image">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-%20OCT.png" alt="October Basic Revenue">
+                        <div class="month-content-container">
+                            <div id="modal-october" class="modal-month-content">
+                                <h3>October Basic Revenue</h3>
+                                <div class="modal-image">
+                                    <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-%20OCT.png" alt="October Basic Revenue">
+                                </div>
+                            </div>
+                            
+                            <div id="modal-november" class="modal-month-content" style="display: none;">
+                                <h3>November Basic Revenue</h3>
+                                <div class="modal-image">
+                                    <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-NOV.png" alt="November Basic Revenue">
+                                </div>
+                            </div>
+                            
+                            <div id="modal-december" class="modal-month-content" style="display: none;">
+                                <h3>December Basic Revenue</h3>
+                                <div class="modal-image">
+                                    <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-DEC%2025.png" alt="December Basic Revenue">
+                                </div>
                             </div>
                         </div>
                         
-                        <div id="modal-november" class="modal-month-content" style="display: none;">
-                            <h3>November Basic Revenue</h3>
-                            <div class="modal-image">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-NOV.png" alt="November Basic Revenue">
-                            </div>
-                        </div>
-                        
-                        <div id="modal-december" class="modal-month-content" style="display: none;">
-                            <h3>December Basic Revenue</h3>
-                            <div class="modal-image">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-DEC%2025.png" alt="December Basic Revenue">
-                            </div>
-                        </div>
-                        
-                        <h3>TOTAL Revenue </h3>
+                        <h3>Total Revenue</h3>
                         <div class="month-buttons">
-                            <button class="month-button active" onclick="switchMonthInModal('october', this)">October</button>
-                            <button class="month-button" onclick="switchMonthInModal('november', this)">November</button>
-                            <button class="month-button" onclick="switchMonthInModal('december', this)">December</button>
+                            <button class="month-button active" onclick="switchMonthInModal('october', this, 'total')">October</button>
+                            <button class="month-button" onclick="switchMonthInModal('november', this, 'total')">November</button>
+                            <button class="month-button" onclick="switchMonthInModal('december', this, 'total')">December</button>
                         </div>
                         
-                        <div id="modal-october" class="modal-month-content">
-                            <h3>October Total Revenue</h3>
-                            <div class="modal-image">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20OCT.png" alt="October Total Revenue">
+                        <div class="month-content-container">
+                            <div id="modal-total-october" class="modal-month-content">
+                                <h3>October Total Revenue</h3>
+                                <div class="modal-image">
+                                    <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20OCT.png" alt="October Total Revenue">
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div id="modal-november" class="modal-month-content" style="display: none;">
-                            <h3>November Total Revenue</h3>
-                            <div class="modal-image">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20NOV.png" alt="November Total Revenue">
+                            
+                            <div id="modal-total-november" class="modal-month-content" style="display: none;">
+                                <h3>November Total Revenue</h3>
+                                <div class="modal-image">
+                                    <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20NOV.png" alt="November Total Revenue">
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div id="modal-december" class="modal-month-content" style="display: none;">
-                            <h3>December Total Revenue</h3>
-                            <div class="modal-image">
-                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20DEC.png" alt="December Total Revenue">
+                            
+                            <div id="modal-total-december" class="modal-month-content" style="display: none;">
+                                <h3>December Total Revenue</h3>
+                                <div class="modal-image">
+                                    <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20DEC.png" alt="December Total Revenue">
+                                </div>
                             </div>
                         </div>
                     `
@@ -1046,10 +1046,10 @@
                     body: `
                         <h3>Send an Enquiry for Sigma</h3>
                         <ul>
-                            <li>Send Enquiry to Sigma Enterprises for Loading Converyor</li>
-                            <li>Expected Quation , drawing will get in this week</li>
+                            <li>Send Enquiry to Sigma Enterprises for Loading Conveyor</li>
+                            <li>Expected Quotation, drawing will get in this week</li>
                         </ul>
-                        <h3>Timeline : Completion of this Project - 30/10/2025</h3>
+                        <h3>Timeline: Completion of this Project - 30/10/2025</h3>
                     `
                 },
                 3: {
@@ -1064,7 +1064,7 @@
                             <li>Compressor Planning: 7</li>
                         </ul>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/pit%202%20-%20bench.jpg">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/pit%202%20-%20bench.jpg" alt="Pit 2 Bench">
                         </div>
                 
                         <h3>Pit 3</h3>
@@ -1074,27 +1074,23 @@
                         <h3>Pit 3 - TOP Bench 1</h3>
                         <ul>
                             <li>Bench Area: 40 M * 8 M * 20 M</li>
-                
                         </ul>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/pit%20-%203%20bench%20-1.jpg">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/pit%20-%203%20bench%20-1.jpg" alt="Pit 3 Bench 1">
                         </div>
                         <h3>Pit 3 - TOP Bench 2</h3>
-                         <ul>
+                        <ul>
                             <li>Bench Area: 70 M * 50 M * 20 M</li>
-                
                         </ul>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Pit%203%20bench%20---2%20.jpg">
-                        </div>
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/Pit%203%20bench%20---2%20.jpg" alt="Pit 3 Bench 2">
                         </div>
                         <h3>Pit 3 - Bench 3</h3>
                         <ul>
                             <li>Bench Area: 80 M * 40 M * 10 M</li>
-                
                         </ul>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/PIT%20333%20BELOW%20BENCH.jpg">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/PIT%20333%20BELOW%20BENCH.jpg" alt="Pit 3 Bench 3">
                         </div>
                 
                         <h3>Responsibility & Roles</h3>
@@ -1113,10 +1109,10 @@
                             <li>No of compressor used Bench wise</li>
                             <li>No of feetage for Benches</li>
                             <li>No of Breaking hours</li>
-                            <li>No of trips & Toanage  Loaded from Banches </li>
-                            <li>Balance Quantity at Benches </li>
-                            <li> Recovery : % </li>
-                            <li> Breaking : % </li>
+                            <li>No of trips & Tonnage Loaded from Benches</li>
+                            <li>Balance Quantity at Benches</li>
+                            <li>Recovery: %</li>
+                            <li>Breaking: %</li>
                         </ul>
                     `
                 },
@@ -1124,33 +1120,32 @@
                     title: "Drilling & Blasting Optimization",
                     subtitle: "Advanced techniques for precision drilling and controlled blasting",
                     body: `
-                        <h3> 17  Compressor Planning </h3>
-                        <h3> 1000 Holes Target </h3>
-                        <h3> Consultancy  : Contacting for the Consultancy </h3>
-                       
+                        <h3>17 Compressor Planning</h3>
+                        <h3>1000 Holes Target</h3>
+                        <h3>Consultancy: Contacting for the Consultancy</h3>
                     `
                 },
                 5: {
                     title: "Operator Training Program",
                     subtitle: "Comprehensive skill development for equipment operators",
                     body: `
-                        <li>After Blasting our team will mark color to the Big boulders then operator will break the same boulders</li>
-                        <li> In this process to control the machine breaking hours <li>
-                        
-                        
+                        <ul>
+                            <li>After Blasting our team will mark color to the Big boulders then operator will break the same boulders</li>
+                            <li>In this process to control the machine breaking hours</li>
+                        </ul>
                     `
                 },
                 6: {
                     title: "Crusher Competitor Study",
                     subtitle: "Market analysis of competing crushing technologies and methodologies",
                     body: `
-                        <h3>Crusher Detials In Vigaz </h3>
+                        <h3>Crusher Details In Vigaz</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/VISION_25-26/main/Crusher%20detials.png">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/VISION_25-26/main/Crusher%20detials.png" alt="Crusher Details">
                         </div>
-                        <h3>Customer Detials & Distance</h3>
+                        <h3>Customer Details & Distance</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/VISION_25-26/main/DIstance%20customers.png">
+                            <img src="https://raw.githubusercontent.com/bimal-bp/VISION_25-26/main/DIstance%20customers.png" alt="Customer Distance">
                         </div>
                     `
                 },
@@ -1171,7 +1166,7 @@
                     body: `
                         <h3>Plant Running Hours</h3>
                         <div class="modal-image">
-                            <img src="https://raw.githubusercontent.com/bimal-bp/VISION_25-26/main/Plant%20runn%20inghr.png"> 
+                            <img src="https://raw.githubusercontent.com/bimal-bp/VISION_25-26/main/Plant%20runn%20inghr.png" alt="Plant Running Hours"> 
                         </div>
                     `
                 },
@@ -1182,7 +1177,7 @@
                         <h3>Alternate Access Road Plan</h3>
                         <ul>
                             <li>Had a meeting with Locals for support</li>
-                            <li>Planning the 2nd road accessing from other side </li>
+                            <li>Planning the 2nd road accessing from other side</li>
                         </ul>
                     `
                 }
@@ -1193,27 +1188,6 @@
                 subtitle: "Details for project " + itemNumber,
                 body: "<p>Detailed information for this project will be available soon.</p>"
             };
-        }
-        
-        // Function to switch months in modal
-        function switchMonthInModal(month, element) {
-            // Remove active class from all month buttons
-            const monthButtons = document.querySelectorAll('.month-button');
-            monthButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            // Add active class to clicked button
-            element.classList.add('active');
-            
-            // Hide all month contents
-            const monthContents = document.querySelectorAll('.modal-month-content');
-            monthContents.forEach(content => {
-                content.style.display = 'none';
-            });
-            
-            // Show selected month content
-            document.getElementById('modal-' + month).style.display = 'block';
         }
     </script>
 </body>
