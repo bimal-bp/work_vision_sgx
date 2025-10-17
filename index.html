@@ -768,34 +768,7 @@
                 </tbody>
             </table>
             
-            <!-- Target Breakdown Section -->
-            <div id="target-breakdown" class="monthly-breakdown">
-                <div class="month-tabs">
-                    <div class="month-tab active" onclick="switchMonth('target-october', this)">October</div>
-                    <div class="month-tab" onclick="switchMonth('target-november', this)">November</div>
-                    <div class="month-tab" onclick="switchMonth('target-december', this)">December</div>
-                </div>
-                <div id="target-october" class="month-content active">                            
-                    <!-- October Image -->
-                    <img src="https://raw.githubusercontent.com/bimal-bp/90_Days_Work_Vision/main/MINE-OCT.jpeg" alt="October Production Plan" class="month-image" onclick="zoomImage(this.src)">
-                    <p class="image-caption">October Production Plan</p>
-                </div>
-                <div id="target-november" class="month-content">                  
-                    <!-- November Image -->
-                    <img src="https://raw.githubusercontent.com/bimal-bp/90_Days_Work_Vision/main/MINE-NOV.jpeg" alt="November Production Plan" class="month-image" onclick="zoomImage(this.src)">
-                    <p class="image-caption">November Production Plan</p>
-                </div>
-                <div id="target-december" class="month-content">
-                    <!-- December Image -->
-                    <img src="https://raw.githubusercontent.com/bimal-bp/90_Days_Work_Vision/main/MINE-DEC.jpeg" alt="December Production Plan" class="month-image" onclick="zoomImage(this.src)">
-                    <p class="image-caption">December Production Plan</p>
-                </div>
-            </div>
-            
-            <button class="point-button" onclick="toggleBreakdown(event, 'bench-breakdown')">View Bench Breakdown</button>
-        </main>
-    </div>
-
+           
     <div id="detailModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -1027,6 +1000,33 @@
                             <h3>December Basic Revenue</h3>
                             <div class="modal-image">
                                 <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/BASIC%20REVENUE%20-DEC%2025.png" alt="December Basic Revenue">
+                            </div>
+                        </div>
+                        <h3>TOTAL Revenue Revenue</h3>
+                        <div class="month-buttons">
+                            <button class="month-button active" onclick="switchMonthInModal('october', this)">October</button>
+                            <button class="month-button" onclick="switchMonthInModal('november', this)">November</button>
+                            <button class="month-button" onclick="switchMonthInModal('december', this)">December</button>
+                        </div>
+                        
+                        <div id="modal-october" class="modal-month-content">
+                            <h3>October Total Revenue</h3>
+                            <div class="modal-image">
+                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20OCT.png" alt="October Total Revenue">
+                            </div>
+                        </div>
+                        
+                        <div id="modal-november" class="modal-month-content" style="display: none;">
+                            <h3>November Total Revenue</h3>
+                            <div class="modal-image">
+                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20NOV.png" alt="November Total Revenue">
+                            </div>
+                        </div>
+                        
+                        <div id="modal-december" class="modal-month-content" style="display: none;">
+                            <h3>December Total Revenue</h3>
+                            <div class="modal-image">
+                                <img src="https://raw.githubusercontent.com/bimal-bp/work_vision_sgx/main/TOTAL%20REVENUE%20-%20DEC.png" alt="December Total Revenue">
                             </div>
                         </div>
                     `
